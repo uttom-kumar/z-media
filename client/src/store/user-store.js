@@ -1,8 +1,12 @@
 import {create} from "zustand";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 
 const UserStore = create((set) => ({
+
+    IsLoggedIn : () => {return !! Cookies.get('token')},
+
     registerInput: { fullName: "", username: "", gender:"",email:"", password: "" },
     registerOnchange: (name, value) => {
         set((state) => ({
@@ -33,10 +37,7 @@ const UserStore = create((set) => ({
     loginRequest : async (reqBody) => {
         let url = `/api/Login`
         let res = await axios.post(url,reqBody)
-        if(res.data['status'] === 'success') {
-            set({loginInput: res.data})
-        }
-        return res.data['status'] === 'success'
+        return res.data
     },
     // ---- Read user profile  ------------
     profileList : null,

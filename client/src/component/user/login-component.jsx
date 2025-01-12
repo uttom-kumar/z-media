@@ -6,10 +6,12 @@ import {FcGoogle} from "react-icons/fc";
 import {FaFacebook} from "react-icons/fa";
 import UserStore from "../../store/user-store.js";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
 
 const LoginComponent = () => {
     const [showPass, setShowPass] = useState(false);
     const {loginInput, loginOnchange, loginRequest} = UserStore()
+    const [error, setError] = useState("");
     const navigate = useNavigate()
     const togglePasswordVisibility = () => {
         setShowPass(!showPass);
@@ -17,17 +19,28 @@ const LoginComponent = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        try{
-            let res = await loginRequest(loginInput)
-            console.log(res)
-            if(res['status'] === 'success') {
-                navigate('/')
+
+        if (!loginInput.email || !loginInput.password) {
+            if (!loginInput.email) return setError("Email is required");
+            if (!loginInput.password) return setError("Password is required");
+        }
+
+        try {
+            const res = await loginRequest(loginInput);
+            if (res.status === "success") {
+                Cookies.set("token", res.token);
+                navigate("/");
+                loginOnchange("email", "");
+                loginOnchange("password", "");
+            } else {
+
+                setError(res.message);
             }
+        } catch (err) {
+            toast.error("Something went wrong!");
         }
-        catch (err) {
-            toast.error("some thing went wrong!");
-        }
-    }
+    };
+
 
 
 
@@ -86,6 +99,7 @@ const LoginComponent = () => {
                                         </button>
                                     </div>
                                 </div>
+                                <p className="text-red-600 mb-3">{error}</p>
                                 <div>
                                     <button type="submit" className="w-full bg-blue-400 py-2 rounded text-white">
                                         Log in
