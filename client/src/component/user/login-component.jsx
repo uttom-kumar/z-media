@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import loginImage from '../../../public/images/login.jpg';
 import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 import {Link, useNavigate} from "react-router-dom";
@@ -17,12 +17,18 @@ const LoginComponent = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        let res = await loginRequest(loginInput)
-        if(res['status'] === 'success'){
-            navigate('/register')
-            toast.success("login successfully")
+        try{
+            let res = await loginRequest(loginInput)
+            console.log(res)
+            if(res['status'] === 'success') {
+                navigate('/')
+            }
+        }
+        catch (err) {
+            toast.error("some thing went wrong!");
         }
     }
+
 
 
     return (
