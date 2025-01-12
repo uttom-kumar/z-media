@@ -9,6 +9,7 @@ export const AuthMiddleware = (req, res, next) => {
     if(!token){
         token=req.cookies['token']
     }
+    console.log(token)
     // token Decoded
     let decoded = DecodedToken(token) 
     if(decoded === null) {

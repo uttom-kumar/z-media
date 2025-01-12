@@ -23,7 +23,7 @@ app.use(helmet())
 app.use(cors(
     {
         // front-end url
-        origin: "http://localhost:5173",
+        origin: "https://z-media-rge4.vercel.app",
         credentials: true
     }
 ))
