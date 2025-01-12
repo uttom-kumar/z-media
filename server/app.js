@@ -25,7 +25,6 @@ app.use(cors(
         // front-end url
         origin: "https://z-media-rge4.vercel.app",
         credentials: true,
-        methods: ['POST', 'GET', 'PUT', 'DELETE']
     }
 ))
 app.use(hpp())
