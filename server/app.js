@@ -20,7 +20,13 @@ import cookieParser from 'cookie-parser'
 app.use(bodyParser.json())
 app.use(mongoSanitize())
 app.use(helmet())
-app.use(cors())
+app.use(cors(
+    {
+        // front-end url
+        origin: "https://z-media-tan.vercel.app",
+        credentials: true
+    }
+))
 app.use(hpp())
 app.use(cookieParser())
 // TODO : RATE LIMITER CONFIGURATION IMPLEMENT
