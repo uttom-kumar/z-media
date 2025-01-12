@@ -28,6 +28,7 @@ const LoginComponent = () => {
         try {
             const res = await loginRequest(loginInput);
             if (res.status === "success") {
+                Cookies.set("Token", res.token)
                 navigate("/");
                 loginOnchange("email", "");
                 loginOnchange("password", "");
