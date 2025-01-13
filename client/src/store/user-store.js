@@ -5,7 +5,6 @@ import Cookies from "js-cookie";
 
 const UserStore = create((set) => ({
 
-    IsLoggedIn : () => {return !! Cookies.get('token')},
 
     registerInput: { fullName: "", username: "", gender:"",email:"", password: "" },
     registerOnchange: (name, value) => {

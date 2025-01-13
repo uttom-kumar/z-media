@@ -8,7 +8,7 @@ export default defineConfig({
     proxy: {
       '/api/' : {
         target: 'https://z-media-tan.vercel.app',
-        changeOrigin: true, secure: false,
+        changeOrigin: true, secure: true,
       }
     }
   }

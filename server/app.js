@@ -45,7 +45,6 @@ mongoose.connect(URL, OPTION).then(()=> {
 
 
 
-
 // TODO : ROUTING CONFIGURATION
 app.use('/api', router)
 export default app;

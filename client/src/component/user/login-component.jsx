@@ -126,7 +126,7 @@ const LoginComponent = () => {
                         </div>
                         <div className="my-5 p-5 rounded border border-gray-500 ">
                             <p>Don't Have an account?
-                                <Link className="text-blue-400 font-bold" to={'/register'}> Sign up</Link>
+                                <Link className="text-blue-400 font-bold" to={'/register'}> Register</Link>
                             </p>
                         </div>
                     </div>
