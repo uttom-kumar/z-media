@@ -1,10 +1,10 @@
 import Cookies from "js-cookie";
 
 export const isLoggedIn = () => {
-    let token = Cookies.get('Token')
+    let token = Cookies.get('token')
     console.log(token)
     if(token){
-        return !!Cookies.get('Token');
+        return !!Cookies.get('token');
     }
     else{
         sessionStorage.clear()
