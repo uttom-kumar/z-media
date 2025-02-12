@@ -24,8 +24,8 @@ app.use(mongoSanitize())
 app.use(helmet())
 app.use(cors(
     {
-        // origin: 'https://z-media-rge4.vercel.app',
-        origin: 'http://localhost:5173',
+        origin: 'https://zmedia-fawn.vercel.app',
+        // origin: 'http://localhost:5173',
         methods: ["GET","HEAD","PUT","POST","DELETE","OPTIONS"],
         credentials: true
     }
