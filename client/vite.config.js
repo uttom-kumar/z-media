@@ -11,8 +11,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/api/' : {
-        // target: 'https://z-media-tan.vercel.app',
-        target: 'http://localhost:5050',
+        target: 'https://zmedia.vercel.app',
+        // target: 'http://localhost:5050',
         changeOrigin: true,
         // rewrite: (path) => path.replace(/^\/api/, ''),
         secure: false,
