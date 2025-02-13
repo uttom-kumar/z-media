@@ -14,7 +14,7 @@ export default defineConfig({
         target: 'https://zmedia.vercel.app',
         // target: 'http://localhost:5050',
         changeOrigin: true,
-        secure: true,
+        secure: false,
       }
     }
   }

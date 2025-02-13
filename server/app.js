@@ -26,7 +26,7 @@ app.use(cors(
     {
         // origin: 'http://localhost:5173',
         origin: 'https://zmedia-fawn.vercel.app',
-        methods: ["GET","HEAD","PUT","POST","DELETE","OPTIONS"],
+        methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
         credentials: true
     }
 ))
