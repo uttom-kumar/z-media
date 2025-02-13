@@ -14,7 +14,6 @@ export default defineConfig({
         target: 'https://zmedia.vercel.app',
         // target: 'http://localhost:5050',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
         secure: true,
       }
     }
