@@ -104,7 +104,7 @@ const PostModalComponent = ({onClose,postID}) => {
 
   return (
     <div>
-      <div className="w-[300px] lsm:w-[500px] xl:w-[650px] h-[95vh] mx-auto rounded bg-white overflow-y-auto  scrollbar-thin scrollbar-track-gray-800">
+      <div className="w-[300px] lsm:w-[500px] xl:w-[650px] h-[95vh] mx-auto rounded bg-white overflow-y-auto  scroll-hidden ">
         <div>
           {
             PostListDetail===null ? (<div>Loading....</div>) : PostListDetail?.map((item, i)=>{
@@ -156,16 +156,17 @@ const PostModalComponent = ({onClose,postID}) => {
                   </div>
                   <div>
                     <div
-                      className="border-t border-t-gray-700 py-2 px-5  flex justify-between items-center mx-2">
-                      <button onClick={() => likeHandler(postID)}>
+                      className="border-t border-t-gray-400 py-2 px-5  flex justify-between items-center mx-2 ">
+                      <button className="cursor-pointer" onClick={() => likeHandler(postID)}>
                         <AiOutlineLike className="text-[24px]"/>
                       </button>
-                      <button>
+                      <button className="">
                         <label htmlFor="comment">
                           <FaRegComment className="text-[24px] cursor-pointer"/>
                         </label>
                       </button>
                       <button
+                        className="cursor-pointer"
                         onClick={()=>handleShare(postID)}
                       >
                         <IoMdShareAlt className="text-[24px]"/>
@@ -207,7 +208,7 @@ const PostModalComponent = ({onClose,postID}) => {
                                           {comment.text.length > 100 && (
                                             <button
                                               onClick={showMoreHandleToggle}
-                                              className="text-blue-400 font-bold"
+                                              className="text-blue-400 font-bold cursor-pointer"
                                             >
                                               {isExpanded ? "Show Less" : "Show More"}
                                             </button>
@@ -215,21 +216,21 @@ const PostModalComponent = ({onClose,postID}) => {
                                         </p>
                                       ) : (
                                         <div className="flex-1">
-                                  <textarea
-                                    className="w-full py-1 px-2 border border-gray-700 rounded-md resize-none overflow-hidden bg-transparent outline-none focus:border-blue-500"
-                                    value={commentUpdateInput?.text}
-                                    onChange={(e) => commentUpdateOnchange("text",e.target.value)}
-                                    ref={(el) => {
-                                      if (el) {
-                                        el.style.height = "auto";
-                                        el.style.height = `${el.scrollHeight}px`;
-                                      }
-                                    }}
-                                    style={{
-                                      minHeight: "50px",
-                                      maxHeight: "300px"
-                                    }}
-                                  />
+                                          <textarea
+                                            className="w-full py-1 px-2 border border-gray-400 rounded-md resize-none overflow-hidden bg-transparent outline-none focus:border-blue-500"
+                                            value={commentUpdateInput?.text}
+                                            onChange={(e) => commentUpdateOnchange("text",e.target.value)}
+                                            ref={(el) => {
+                                              if (el) {
+                                                el.style.height = "auto";
+                                                el.style.height = `${el.scrollHeight}px`;
+                                              }
+                                            }}
+                                            style={{
+                                              minHeight: "50px",
+                                              maxHeight: "300px"
+                                            }}
+                                          />
                                         </div>
                                       )}
                                     </div>
@@ -241,7 +242,7 @@ const PostModalComponent = ({onClose,postID}) => {
                                               <div key={i} className="flex items-center gap-3 mt-1">
                                                 {
                                                   profile?._id === comment?.userID && (
-                                                    <button className="text-red-600 font-semibold hover:underline"
+                                                    <button className="text-red-600 font-semibold hover:underline cursor-pointer"
                                                             onClick={() => CommentDeleteHandler(comment?.blogID, comment?._id)}
                                                     >
                                                       Delete
@@ -253,21 +254,21 @@ const PostModalComponent = ({onClose,postID}) => {
                                                     {!isEditing || isEditing !== comment?._id ? (
                                                       <button
                                                         onClick={() => handleEditClick(comment?._id)}
-                                                        className="text-blue-600 font-semibold hover:underline"
+                                                        className="text-blue-600 font-semibold cursor-pointer hover:underline"
                                                       >
                                                         Edit
                                                       </button>
                                                     ) : (
                                                       <button
                                                         onClick={()=>handleSaveClick(comment?._id)}
-                                                        className="text-green-600 font-semibold hover:underline"
+                                                        className="text-green-600 font-semibold cursor-pointer hover:underline"
                                                       >
                                                         Save
                                                       </button>
                                                     )}
                                                   </div>
                                                 )}
-                                                <button className="text-gray-700 font-semibold hover:underline">Hide</button>
+                                                <button className="text-gray-700 font-semibold hover:underline cursor-pointer">Hide</button>
                                               </div>
                                             )
                                           })
@@ -284,7 +285,7 @@ const PostModalComponent = ({onClose,postID}) => {
                     }
                   </div>
                   {/* -------- Create comment ---------*/}
-                  <div className="sticky bottom-0 w-full bg-white box-border border px-3 " id="commentDiv">
+                  <div className="sticky bottom-0 w-full bg-white box-border border-t border-t-gray-400 shadow px-3 " id="commentDiv">
                     <CommentCreateModalComponent comment="comment" blogID={postID}/>
                   </div>
                 </div>

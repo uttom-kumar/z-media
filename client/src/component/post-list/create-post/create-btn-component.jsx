@@ -30,7 +30,7 @@ const CreateBtnComponent = () => {
                 {/* Input */}
                 <button
                   onClick={() => setShowModal(true)}
-                  className="flex-1 bg-gray-300 px-4 py-2 rounded-full focus:outline-none"
+                  className="flex-1 bg-gray-300 px-4 py-2 rounded-full focus:outline-none cursor-pointer"
                 >
                   What&#39;s on your mind, {profile?.user?.fullName}
                 </button>
@@ -42,20 +42,20 @@ const CreateBtnComponent = () => {
         {/* Action Buttons */}
         <div className="flex justify-between">
           <button
-            className="flex items-center space-x-2 px-4 text-[24px] py-2 rounded-lg hover:bg-gray-200 transition">
+            className="flex items-center space-x-2 px-4 text-[24px] py-2 rounded-lg hover:bg-gray-200 transition cursor-pointer">
             <img className="w-[30px] " src={liveIcon} alt=""/>
-            <span className="text-sm hidden lsm:block">Live video</span>
+            <span className="text-sm hidden md:block">Live video</span>
           </button>
           <button
             onClick={() => setShowModal(true)}
-            className="flex items-center space-x-2 px-4 text-[24px] py-2 rounded-lg hover:bg-gray-200 transition">
+            className="flex items-center space-x-2 px-4 text-[24px] py-2 rounded-lg hover:bg-gray-200 transition  cursor-pointer">
             <img className="w-[30px] " src={galaryIcon} alt=""/>
-            <span className="text-sm hidden lsm:block">Photo/video</span>
+            <span className="text-sm hidden md:block">Photo/video</span>
           </button>
           <button
-            className="flex items-center space-x-2 px-4 text-[24px] py-2 rounded-lg hover:bg-gray-200 transition">
+            className="flex items-center space-x-2 px-4 text-[24px] py-2 rounded-lg hover:bg-gray-200 transition cursor-pointer">
             <img className="w-[30px] " src={mediaIcon} alt=""/>
-            <span className="text-sm hidden lsm:block">Reel</span>
+            <span className="text-sm hidden md:block">Reel</span>
           </button>
         </div>
       </div>

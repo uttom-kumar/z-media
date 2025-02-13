@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="d4537776-af3f-4fbf-8756-a126fe160dbe" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/vite.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/create-post/create-btn-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/create-post/create-btn-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/create-post/create-post-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/create-post/create-post-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-modal/post-modal-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-modal/post-modal-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-update/post-update-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-update/post-update-component.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +137,7 @@
       <workItem from="1739384653170" duration="156000" />
       <workItem from="1739384829376" duration="14045000" />
       <workItem from="1739399415649" duration="1081000" />
-      <workItem from="1739421094682" duration="6869000" />
+      <workItem from="1739421094682" duration="8196000" />
     </task>
     <servers />
   </component>

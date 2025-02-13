@@ -35,7 +35,7 @@ const ModalComponent = ({ isVisible, onClose, children }) => {
                 className="p-5 h-auto rounded relative z-[99999]">
                   {children}
                   <div className="absolute top-[25px] right-[40px] z-[999999] w-[35px] h-[35px] rounded-full bg-gray-300 flex flex-col justify-center items-center">
-                      <button onClick={() => onClose()}>
+                      <button className="cursor-pointer" onClick={() => onClose()}>
                           <IoCloseSharp className="text-[30px] text-gray-800 hover:text-gray-500 duration-500"/>
                       </button>
                   </div>

@@ -114,7 +114,7 @@ const PostUpdateComponent = ({ blogID, userID, onClose }) => {
         <div className="mb-4">
           <textarea
             placeholder="What's on your mind?"
-            className="w-full px-4 py-2 focus:outline-none resize-none overflow-hidden"
+            className="w-full px-4 py-2 focus:outline-none border border-gray-200 rounded shadow resize-none overflow-hidden"
             rows="2"
             value={updateBLogInput.title}
             onChange={(e) => updateBlogOnchange("title", e.target.value)}
@@ -159,20 +159,21 @@ const PostUpdateComponent = ({ blogID, userID, onClose }) => {
             <div className="flex space-x-4">
               <div className="relative w-[30px] h-[30px] cursor-pointer">
                 <input
+                  id={"btn_image"}
                   onChange={OnchangeHandler}
                   type="file"
-                  className="absolute top-0 left-0 w-full h-full rounded-full bg-black opacity-0 z-50 cursor-pointer"
+                  className="absolute top-0 left-0 w-full h-full rounded-full bg-black hidden z-50 cursor-pointer"
                 />
-                <button className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                <label htmlFor={"btn_image"} className="absolute top-0 left-0 w-full h-full flex items-center cursor-pointer justify-center">
                   <img className="w-[30px] h-[30px]" src={gallaryIcon} alt="Gallery Icon"/>
-                </button>
+                </label>
               </div>
 
               {/*-------EmojiPicker ----------*/}
               <div className="relative cursor-pointer" ref={emojiRef}>
                 <button
                   onClick={EmojiHandler}
-                  className="flex items-center justify-center text-[24px] text-yellow-500"
+                  className="flex items-center justify-center text-[24px] text-yellow-500 cursor-pointer"
                 >
                   <BsEmojiGrin/>
                 </button>
@@ -197,7 +198,7 @@ const PostUpdateComponent = ({ blogID, userID, onClose }) => {
           <button
             onClick={updateHandler}
             type="button"
-            className="w-full bg-blue-400 py-2 text-white rounded-lg"
+            className="w-full bg-blue-400 py-2 text-white rounded-lg cursor-pointer"
           >
             Update Post
           </button>

@@ -190,22 +190,23 @@ const CreatePostComponent = ({ onClose }) => {
             {/* Image Upload */}
             <div className="relative w-[30px] h-[30px] cursor-pointer">
               <input
+                id={"btn_image"}
                 key={inputKey}
                 onChange={OnchangeHandler}
                 type="file"
                 accept="image/*"
-                className="absolute inset-0 w-full h-full rounded-full bg-black opacity-0 z-50 cursor-pointer"
+                className="absolute inset-0 w-full h-full rounded-full bg-black hidden  z-50 cursor-pointer"
               />
-              <button className="absolute inset-0 flex items-center justify-center">
+              <label htmlFor={"btn_image"} className="absolute inset-0 flex items-center justify-center cursor-pointer">
                 <img className="w-[30px] h-[30px]" src={gallaryIcon} alt="Gallery Icon" />
-              </button>
+              </label>
             </div>
 
             {/* Emoji Picker */}
             <div className="relative cursor-pointer" ref={emojiRef}>
               <button
                 onClick={EmojiHandler}
-                className="flex items-center justify-center text-[24px] text-yellow-500"
+                className="flex items-center justify-center text-[24px] text-yellow-500 cursor-pointer"
               >
                 <BsEmojiGrin />
               </button>
