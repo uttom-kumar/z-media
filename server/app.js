@@ -27,7 +27,8 @@ app.use(cors({
   origin: [
     'http://localhost:5173',
     "https://uviom.searchfriend.pro",
-    "https://astonishing-sunshine-1d9865.netlify.app"
+    "https://astonishing-sunshine-1d9865.netlify.app",
+    "https://z-media-xi.vercel.app"
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
