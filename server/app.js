@@ -25,7 +25,8 @@ app.use(helmet())
 
 app.use(cors({
   origin: [
-    'http://localhost:5173',
+    // 'http://localhost:5173',
+    "https://astonishing-sunshine-1d9865.netlify.app"
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
