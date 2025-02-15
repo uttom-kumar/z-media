@@ -158,7 +158,7 @@ export const UpdateProfileService = async (req, res) => {
                       else resolve(result);
                   }).end(file.data)
             })
-            profileFields.profilePicture = uploadResult.secure_url; // Add image URL to the profile fields
+            profileFields.image = uploadResult.secure_url; // Add image URL to the profile fields
         }
 
         // ব্লগ পোস্ট খোঁজা যাতে তার ইমেজ URL পাওয়া যায়
