@@ -206,7 +206,7 @@ const SingleUserComponent = () => {
                       <li key={index} className={`text-gray-500 ${activeTab === tab.name ? "text-blue-400" : ""}`}>
                         <button
                           onClick={() => handleTabClick(tab.name)}
-                          className={`px-4 py-2 text-center flex font-bold items-center gap-2 ${
+                          className={`px-4 py-2 text-center flex font-bold items-center gap-2 cursor-pointer ${
                             activeTab === tab.name
                               ? "border-b-2 border-b-blue-400 text-blue-400 font-bold"
                               : " hover:border-b-blue-500"

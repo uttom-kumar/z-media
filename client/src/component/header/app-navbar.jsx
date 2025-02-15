@@ -150,7 +150,7 @@ const AppNavbar = () => {
                   return (
                     <div key={i}>
                       <img
-                        className="w-[40px] h-[40px] object-cover rounded-full bg-white"
+                        className="w-[40px] h-[40px] object-contain rounded-full bg-white"
                         src={profile?.profile[0]?.profilePicture || profileUrl} // If profilePicture is available, use it; otherwise, use profileUrl.
                         alt="profile"
                       />

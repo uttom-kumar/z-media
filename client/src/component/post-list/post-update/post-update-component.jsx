@@ -97,7 +97,7 @@ const PostUpdateComponent = ({ blogID, userID, onClose }) => {
             <img
               src={profile?.profile[0]?.profilePicture || profileUrl}
               alt="Profile"
-              className="w-10 h-10 rounded-full"
+              className="w-10 h-10 rounded-full object-contain"
             />
             <div>
               <h3 className="text-sm font-semibold">{profile?.user?.fullName}</h3>

@@ -21,7 +21,7 @@ const CreatePostComponent = ({ onClose }) => {
 
   const [imagePreview, setImagePreview] = useState(null);
   const [imageFile, setImageFile] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState("hidden");
   const [emoji, setEmoji] = useState(false);
   const emojiRef = useRef(null);
   const [inputKey, setInputKey] = useState(Date.now());
@@ -29,17 +29,17 @@ const CreatePostComponent = ({ onClose }) => {
 
 
   const CreatePostHandler = async () => {
-    setLoading(true);
+    setLoading("block");
 
     // Validate role
     if (!blogInput.role) {
-      setLoading(false);
+      setLoading("hidden");
       return setError("Role is required");
     }
 
     // Validate that at least one of title or imageFile is provided
     if (!blogInput.title && !imageFile) {
-      setLoading(false);
+      setLoading("hidden");
       return setError("Either title or image is required");
     }
 
@@ -63,11 +63,11 @@ const CreatePostComponent = ({ onClose }) => {
         setImagePreview(null);
         toast.success("Post created successfully");
       } else {
-        setLoading(false);
+        setLoading("hidden");
         toast.error("Failed to create post!");
       }
     } catch (err) {
-      setLoading(false);
+      setLoading("hidden");
       toast.error("Failed to create post!");
     }
   };
@@ -112,11 +112,9 @@ const CreatePostComponent = ({ onClose }) => {
 
   return (
     <div className="z-50">
-      {loading && (
-        <div className="absolute inset-0 bg-white bg-opacity-50 flex items-center justify-center">
-          <LoadingSkeleton />
-        </div>
-      )}
+      <div className={loading}>
+        <LoadingSkeleton />
+      </div>
 
       {/* User Info Section */}
       {profileList?.map((profile, i) => (

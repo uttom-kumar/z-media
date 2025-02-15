@@ -12,8 +12,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/api/': {
-        target:'http://localhost:5050',
-        // target:'https://z-media-rest-api.onrender.com',
+        // target:'http://localhost:5050',
+        target:'https://z-media-rest-api.onrender.com',
         changeOrigin: true,
         secure: false,
       }

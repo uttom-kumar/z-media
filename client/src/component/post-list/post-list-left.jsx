@@ -111,7 +111,7 @@ const PostListLeft = () => {
                       <div className="flex items-start gap-2">
                         <Link
                           to={`${profileList?.[0]?._id === post?.userID ? "/profile" : `/profile/${post?.userID}`}`}>
-                          <img className="w-[40px] h-[40px] rounded-full"
+                          <img className="w-[40px] h-[40px] rounded-full object-contain"
                                src={post?.profile?.[0]?.profilePicture || profileUrl}
                                alt="profile picture"/>
                         </Link>

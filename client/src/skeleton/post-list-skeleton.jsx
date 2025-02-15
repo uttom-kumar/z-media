@@ -6,7 +6,7 @@ const PostListSkeleton = () => {
     <>
       {
         Array.from(Array(10).keys()).map((_, i) => (
-          <div key={i} className="my-10 shadow-lg border rounded">
+          <div key={i} className="my-10 shadow border border-gray-200 rounded">
             <SkeletonTheme baseColor="#ccc" highlightColor="#F8FAFC">
               <div className="w-full p-5 bg-white">
                 <div className="flex gap-3 items-center">

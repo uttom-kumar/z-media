@@ -12,7 +12,7 @@ const SingleProfilePhotoTabComponent = () => {
         {UserBySingleListDetails === null ? (
           <div><PhotoSkeleton /></div>
         ) : (
-          <div className="grid grid-cols-1 lsm:grid-cols-3 md:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 min-sm:grid-cols-3 md:grid-cols-5 gap-5">
             {UserBySingleListDetails?.slice()
               ?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
               ?.map((photo, index) => {
