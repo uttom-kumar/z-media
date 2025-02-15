@@ -12,7 +12,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api/': {
-        target:'https://z-media-api.onrender.com',
+        target:'https://z-media-rest-api.onrender.com',
         changeOrigin: true,
         secure: false,
       }
