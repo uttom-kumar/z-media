@@ -24,13 +24,13 @@ app.use(mongoSanitize())
 app.use(helmet())
 
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    "https://uviom.searchfriend.pro",
-    // "https://astonishing-sunshine-1d9865.netlify.app"
-  ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: true,
+  // origin: [
+  //   'http://localhost:5173',
+  //   "https://uviom.searchfriend.pro",
+  //   // "https://astonishing-sunshine-1d9865.netlify.app"
+  // ],
+  // methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  // credentials: true,
 }));
 
 
