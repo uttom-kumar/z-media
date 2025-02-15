@@ -127,8 +127,6 @@ export const UpdateProfileService = async (req, res) => {
 
         const file = req.files?.image;
 
-
-
         // Fields to be updated in the `UserModel`
         const userFields = {
             ...(reqBody.fullName && { fullName: reqBody.fullName }),
@@ -158,7 +156,7 @@ export const UpdateProfileService = async (req, res) => {
                       else resolve(result);
                   }).end(file.data)
             })
-            profileFields.image = uploadResult.secure_url; // Add image URL to the profile fields
+            profileFields.profilePicture = uploadResult.secure_url; // Add image URL to the profile fields
         }
 
         // ব্লগ পোস্ট খোঁজা যাতে তার ইমেজ URL পাওয়া যায়
@@ -209,6 +207,9 @@ export const UpdateProfileService = async (req, res) => {
         }
     }
 }
+
+
+
 
 export const ReadProfileService = async (req, res) => {
     try{
