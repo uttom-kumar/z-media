@@ -30,7 +30,7 @@ const UserStore = create((set) => ({
         }))
     },
     loginRequest : async (reqBody) => {
-        let url = `/api/Login`
+        let url = `https://z-media-rest-api.onrender.com/api/Login`
         let res = await axios.post(url,reqBody)
         return res.data
     },
