@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: z-media
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
