@@ -24,12 +24,13 @@ app.use(mongoSanitize())
 app.use(helmet())
 
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    "https://uviom.searchfriend.pro",
-    "https://astonishing-sunshine-1d9865.netlify.app",
-    "https://z-media-xi.vercel.app"
-  ],
+  // origin: [
+  //   'http://localhost:5173',
+  //   "https://uviom.searchfriend.pro",
+  //   "https://astonishing-sunshine-1d9865.netlify.app",
+  //   "https://z-media-xi.vercel.app"
+  // ],
+  origin: "*",
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
 }));
