@@ -7,7 +7,7 @@ import PrivetRoute from "./page/privet-route/privet-route.jsx";
 import PostDetailPage from "./page/blog-post/post-detail-page.jsx";
 import ProfileRead from "./page/profile/profile-read.jsx";
 import FriendPage from "./page/friends/friend-page.jsx";
-import ExplorePage from "./page/explore/explore-page.jsx";
+import SearchPage from "./page/explore/search-page.jsx";
 import MessagesPage from "./page/messages/messages-page.jsx";
 import NotificationPage from "./page/notification/notification-page.jsx";
 import QrCodePage from "./page/profile/qr-code-page.jsx";
@@ -20,6 +20,7 @@ import SingleStoryPage from "./page/story/single-story-page.jsx";
 import RecoverEmailPage from "./page/user/recover-email-page.jsx";
 import OtpConfirmPage from "./page/user/otp-confirm-page.jsx";
 import ResetPasswordPage from "./page/user/reset-password-page.jsx";
+import GroupPage from "./page/group/group-page.jsx";
 
 
 function ScrollToTopOnNavigation() {
@@ -57,7 +58,9 @@ const App = (props) => {
                     <Route path="/" element={<PrivetRoute><HomePage /></PrivetRoute>} />
                     <Route path="/blogDetails/:blogID" element={<PrivetRoute><PostDetailPage /></PrivetRoute>} />
 
-                    <Route path="/explore" element={<PrivetRoute><ExplorePage /></PrivetRoute>} />
+                    <Route path="/create-group" element={<PrivetRoute><GroupPage /></PrivetRoute>} />
+
+                    <Route path="/search" element={<PrivetRoute><SearchPage /></PrivetRoute>} />
                     <Route path="/friends/:id" element={<PrivetRoute><FriendPage /></PrivetRoute>} />
                     <Route path="/message" element={<PrivetRoute><MessagesPage /></PrivetRoute>} />
                     <Route path="/notifications" element={<PrivetRoute><NotificationPage /></PrivetRoute>} />

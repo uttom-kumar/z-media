@@ -11,7 +11,7 @@ export const EMAIL_PASS="zsscyvhplonhxxsq"
 export const EMAIL_UN_AUTH=false
 
 export const WEB_CACHE = false
-export const WEB_JSON_SIZE = "10MB"
+export const WEB_JSON_SIZE = "50MB"
 export const URL_ENCODE = true
 
 export const REQUEST_TIME = 20*60*1000

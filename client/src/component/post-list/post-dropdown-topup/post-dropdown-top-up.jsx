@@ -11,7 +11,8 @@ import toast from "react-hot-toast";
 const PostDropdownTopUp = ({blogID,userID}) => {
   const [showModal, setShowModal] = useState(false)
   const {profileList} = UserStore()
-  const{DeletePostListRequest , blogPostReadRequest, UserByBlogPostListRequest,UserBySingleListDetailsRequest,updateBLogInput, UpdatePostListRequest} = PostListStore()
+  const{DeletePostListRequest , blogPostReadRequest, UserByBlogPostListRequest,UserBySingleListDetailsRequest,updateBLogInput,
+    UpdatePostListRequest} = PostListStore()
   const [copy, setCopy] = useState(false)
 
 
@@ -70,7 +71,10 @@ const PostDropdownTopUp = ({blogID,userID}) => {
           <>
             <select
               value={updateBLogInput.role}
-              onChange={(e) => UpdatePostListRequest(blogID, {role: e.target.value})}
+              onChange={async (e) => {
+                await UpdatePostListRequest(blogID, {role: e.target.value})
+                await aa()
+              }}
               className="w-full py-2 px-5 ">
               <option value="">⚙️ Edit audience</option>
               <option value="public">🌍 Public</option>

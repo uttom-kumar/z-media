@@ -27,9 +27,10 @@ const ModalComponent = ({ isVisible, onClose, children }) => {
     return (
       <div>
           <div
-            className="fixed inset-0 bg-black/30 flex flex-col justify-center items-center z-[1000]"
+            className="fixed inset-0 flex flex-col justify-center items-center z-50"
             id="wrapper"
             onClick={handleClose}
+            style={{background:"rgba(0, 0, 0, 0.1)"}}
           >
               <div
                 className="p-5 h-auto rounded relative z-[99999]">

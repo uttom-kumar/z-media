@@ -26,19 +26,19 @@ const CommentHeader = () => {
           <ul className="flex items-center gap-2">
             <li>
             <Link className="w-[40px] h-[40px] text-[30px] rounded-full flex bg-gray-300 items-center justify-center"
-                    to={'/notifications'}>
+                    to={`/notifications`}>
                 <IoMdNotifications/>
               </Link>
             </li>
             <li>
               <Link className="w-[40px] h-[40px] text-[24px] rounded-full flex bg-gray-300 items-center justify-center"
-                    to={'/message'}>
+                    to={`/message`}>
                 <FaFacebookMessenger/>
               </Link>
             </li>
             <li>
               <Link className="w-[40px] h-[40px] text-[24px] rounded-full flex bg-gray-300 items-center justify-center"
-                    to={'/profile'}>
+                    to={`/profile`}>
                 {
                   profileList?.map((profile, i) => {
                     return (

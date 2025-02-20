@@ -16,6 +16,10 @@ import fileUpload from 'express-fileupload'
 import mongoose from 'mongoose'
 import router from './src/routes/api.js'
 import cookieParser from 'cookie-parser'
+
+
+import path from 'path'
+
 /* ---- ---- */
 // TODO : SECURITY MIDDLEWARE LIBRATY IMPLEMENT
 app.use(bodyParser.json())
@@ -68,7 +72,15 @@ mongoose.connect(URL, OPTION).then(()=> {
 })
 
 
+app.use(express.static('client/dist'))
+app.get("*", async(req, res)=> {
+  res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"))
+})
+
 
 // TODO : ROUTING CONFIGURATION
 app.use('/api', router)
+app.use('/*', async (req, res) => {
+  res.send("404 page not found")
+})
 export default app;

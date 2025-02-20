@@ -5,8 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4537776-af3f-4fbf-8756-a126fe160dbe" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/component/group-component/group-page-component.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/component/header/more-button-component.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/page/group/group-page.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/controllers/GroupController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/models/GroupCommentModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/models/GroupModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/models/GroupPostModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/models/GroupReactionModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/services/GroupService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/header/app-menubar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/header/app-menubar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/header/app-navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/header/app-navbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/header/comment-header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/header/comment-header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/modal/modal-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/modal/modal-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-dropdown-topup/post-dropdown-top-up.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-dropdown-topup/post-dropdown-top-up.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-modal/post-modal-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-modal/post-modal-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/user-profile/settings/setting-modal-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user-profile/settings/setting-modal-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/user-profile/settings/setting-modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user-profile/settings/setting-modal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/page/explore/explore-page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/page/explore/search-page.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/vite.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/config/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/config/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/CommentModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/CommentModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/api.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +39,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="JSX File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -138,7 +161,11 @@
       <workItem from="1739595050165" duration="6578000" />
       <workItem from="1739606747135" duration="1456000" />
       <workItem from="1739608924028" duration="12429000" />
-      <workItem from="1739678816758" duration="1359000" />
+      <workItem from="1739678816758" duration="2164000" />
+      <workItem from="1739696184331" duration="31528000" />
+      <workItem from="1739764606915" duration="29193000" />
+      <workItem from="1739957786261" duration="888000" />
+      <workItem from="1740058743360" duration="1490000" />
     </task>
     <servers />
   </component>

@@ -19,32 +19,32 @@ const SettingModalComponent = ({onClose}) => {
     <div className="z-[999999999999">
       <ul className="flex flex-col text-center">
         <li className="">
-          <Link to={`/profile/qr-code`} target={"_blank"} className="block w-full py-5 hover:bg-gray-200 duration-500 border-b-[1px] border-gray-500">
+          <Link to={`/profile/qr-code`} target={"_blank"} className="block w-full py-5 hover:bg-gray-100 duration-500 border-b border-gray-300">
             OR code
           </Link>
         </li>
         <li className="">
-          <Link to={'/'} className="block w-full py-5 hover:bg-gray-200 duration-500 border-b-[1px] border-gray-500">
+          <Link to={'/'} className="block w-full py-5 hover:bg-gray-200 duration-500  border-b border-gray-300">
             Setting and privacy
           </Link>
         </li>
         <li className="">
-          <Link onClick={()=>onClose(false)} to={`/profile/update`} className="block w-full py-5 hover:bg-gray-200 duration-500 border-b-[1px] border-gray-500">
+          <Link onClick={()=>onClose(false)} to={`/profile/update`} className="block w-full py-5 hover:bg-gray-200 duration-500  border-b border-gray-300">
             Update Profile
           </Link>
         </li>
         <li className="">
-          <Link to={'/'} className="block w-full py-5 hover:bg-gray-200 duration-500 border-b-[1px] border-gray-500">
+          <Link to={'/'} className="block w-full py-5 hover:bg-gray-200 duration-500  border-b border-gray-300">
             Meta Verification
           </Link>
         </li>
         <li className="">
-          <Link to={'/'} className="block w-full py-5 hover:bg-gray-200 duration-500 border-b-[1px] border-gray-500">
+          <Link to={'/'} className="block w-full py-5 hover:bg-gray-200 duration-500  border-b border-gray-300">
             Login activity
           </Link>
         </li>
         <li className="">
-          <Link to={'/'} className="block w-full py-5 hover:bg-gray-200 duration-500 border-b-[1px] border-gray-500"
+          <Link to={'/'} className="block w-full py-5 hover:bg-gray-200 duration-500  border-b border-gray-300"
             onClick={logOutHandler}
           >
             Log Out
@@ -53,7 +53,7 @@ const SettingModalComponent = ({onClose}) => {
         <li className="">
           <button
             onClick={()=>onClose(false)}
-                  className="block w-full py-5 hover:bg-gray-200 duration-500 border-b-[1px] border-gray-500">
+                  className="block w-full cursor-pointer py-5 hover:bg-gray-200 duration-500  border-b border-gray-300">
             cancel
           </button>
         </li>

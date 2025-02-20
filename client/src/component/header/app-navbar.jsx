@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {Link, NavLink} from "react-router-dom";
 import { IoHomeOutline, IoHomeSharp } from "react-icons/io5";
 import { MdExplore, MdOutlineExplore } from "react-icons/md";
-import { FaUserFriends } from "react-icons/fa";
+import {FaBars, FaSearch, FaUserFriends} from "react-icons/fa";
 import { LiaUserFriendsSolid } from "react-icons/lia";
 import { FiPlusSquare } from "react-icons/fi";
-import { BsMessenger } from "react-icons/bs";
+import {BsGrid3X3GapFill, BsMessenger} from "react-icons/bs";
 import { PiMessengerLogo } from "react-icons/pi";
 import {IoIosSettings, IoMdNotifications, IoMdNotificationsOutline} from "react-icons/io";
 import UserStore from "../../store/user-store.js";
@@ -15,11 +15,15 @@ import CreatePostComponent from "../post-list/create-post/create-post-component.
 import Skeleton, {SkeletonTheme} from "react-loading-skeleton";
 import SettingModalComponent from "../user-profile/settings/setting-modal-component.jsx";
 import SettingModal from "../user-profile/settings/setting-modal.jsx";
+import {GoSearch} from "react-icons/go";
+import ModalComponent from "../modal/modal-component.jsx";
+import MoreButtonComponent from "./more-button-component.jsx";
 
 const AppNavbar = () => {
     const {profileList, profileListRequest} = UserStore()
     const [showModal, setShowModal] = useState(false)
     const [settingModal, setSettingModal] = useState(false)
+    const [MoreModal, setMoreModal] = useState(false)
     useEffect(() => {
         (async () => {
             await profileListRequest()
@@ -51,15 +55,15 @@ const AppNavbar = () => {
           {/* Explore */}
           <li className="lg:my-5">
             <NavLink
-              to="/explore"
+              to="/search"
               className={({isActive}) =>
                 `text-[18px] flex items-center rounded gap-1 px-2 lg:py-3 hover:bg-gray-100 ${isActive ? "font-bold" : "font-normal"}`
               }
             >
               {({isActive}) => (
                 <>
-                  {isActive ? <MdExplore/> : <MdOutlineExplore/>}
-                  <span className="hidden lg:block">Explore</span>
+                  {isActive ? <FaSearch /> : <GoSearch />}
+                  <span className="hidden lg:block">Search</span>
                 </>
               )}
             </NavLink>
@@ -171,7 +175,19 @@ const AppNavbar = () => {
               <span className="hidden lg:block">Setting</span>
             </button>
           </li>
+          <li className="hidden lg:block lg:my-5">
+            <button
+              onClick={() => setMoreModal(true)}
+              type="button"
+              className="text-[18px] w-full flex items-center rounded gap-1 px-2 py-3 hover:bg-gray-100 cursor-pointer"
+            >
+              <BsGrid3X3GapFill className="text-[24px]" />
+              <span className="hidden lg:block">More</span>
+            </button>
+          </li>
         </ul>
+
+
         <div>
           <CreatePostModal isVisible={showModal} onClose={() => setShowModal(false)}>
             <CreatePostComponent onClose={setShowModal}/>
@@ -181,6 +197,11 @@ const AppNavbar = () => {
           <SettingModal isVisible={settingModal} onClose={() => setSettingModal(false)}>
             <SettingModalComponent onClose={setSettingModal}/>
           </SettingModal>
+        </div>
+        <div>
+          <ModalComponent isVisible={MoreModal} onClose={() => setMoreModal(false)}>
+            <MoreButtonComponent onClose={setMoreModal}/>
+          </ModalComponent>
         </div>
       </div>
     );

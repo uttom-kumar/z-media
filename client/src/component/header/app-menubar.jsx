@@ -13,10 +13,10 @@ const AppMenubar = () => {
 
     return (
       <div>
-          <nav className="flex justify-between items-center px-4 py-2 bg-white border border-gray-300 shadow-lg z-50">
+          <nav className="flex justify-between items-center px-4 py-2 bg-white border border-gray-200 shadow z-50">
               {/* Left Section - Logo */}
               <div className="flex items-center">
-                  <h1 className="text-2xl font-bold font-[cursive]">Z-Media</h1>
+                  <Link to="/" className="text-2xl font-bold font-[cursive]">Z-Media</Link>
               </div>
 
               {/* Right Section - Icons */}
@@ -35,6 +35,7 @@ const AppMenubar = () => {
                   }
                   <div>
                       <button
+                        className="cursor-pointer"
                         onClick={() => setSettingModal(true)}
                         type="button"
                       >
