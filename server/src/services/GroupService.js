@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import {GroupModel} from "../models/GroupModel.js";
 import {GroupPostModel} from "../models/GroupPostModel.js";
 import {GroupReactionModel} from "../models/GroupReactionModel.js";
+import {GroupCommentModel} from "../models/GroupCommentModel.js";
 dotenv.config();
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -70,8 +71,6 @@ export const CreateGroupService = async (req) => {
     };
   }
 }
-
-
 
 // update group name and image
 export const UpdateGroupService = async (req) => {
@@ -157,6 +156,15 @@ export const ReadGroupService = async (req) => {
       }
     }
 
+    const JoinWithUserProfileStage = {
+      $lookup: {
+        from: "userprofiles",
+        localField: "userID",
+        foreignField: "userID",
+        as: "userProfile",
+      }
+    }
+
 
     const JoinWithPostStage = {
       $lookup: {
@@ -185,20 +193,78 @@ export const ReadGroupService = async (req) => {
       }
     }
 
+    const JoinWithGroupReactionStage = {
+      $lookup: {
+        from: "groupreactions",
+        localField: "GroupPost._id",
+        foreignField: "postID",
+        as: "GroupPostReaction",
+      }
+    }
+
+    const JoinWithReactionUserStage = {
+      $lookup: {
+        from: "users",
+        localField: "GroupPostReaction.likeList.userID",
+        foreignField: "_id",
+        as: "PostReactionUser",
+      }
+    }
 
 
     const JoinWithCommentStage = {
       $lookup: {
         from: "groupcomments",
-        localField: "groupId",
-        foreignField: "groupID",
+        localField: "GroupPost._id",
+        foreignField: "postID",
         as: "comment",
       }
     }
 
+    const JoinWithCommentUserStage = {
+      $lookup: {
+        from: "users",
+        localField: "comment.userID",
+        foreignField: "_id",
+        as: "commentUser",
+      }
+    }
+
+    const JoinWithCommentUserProfileStage = {
+      $lookup: {
+        from: "userprofiles",
+        localField: "comment.userID",
+        foreignField: "userID",
+        as: "commentUserProfile",
+      }
+    }
+
+    const JoinWithCommentReplyUserStage = {
+      $lookup: {
+        from: "users",
+        localField: "comment.replies.userID",
+        foreignField: "_id",
+        as: "commentReplyUser",
+      }
+    }
+
+    const JoinWithCommentReplyUserProfileStage = {
+      $lookup: {
+        from: "userprofiles",
+        localField: "comment.replies.userID",
+        foreignField: "userID",
+        as: "commentReplyUserProfile",
+      }
+    }
+
+
 
     const UnwindUserStage = {$unwind: "$user"}
-    const UnwindUserProfileStage = {$unwind: {path: "$profile", preserveNullAndEmptyArrays: true}}
+    const UnwindUserProfileStage = {$unwind: {path: "$userProfile", preserveNullAndEmptyArrays: true}}
+    const UnwindCommentUserStage = {$unwind: {path: "$commentUser", preserveNullAndEmptyArrays: true}}
+    const UnwindCommentUserProfileStage = {$unwind: {path: "$commentUserProfile", preserveNullAndEmptyArrays: true}}
+    const UnwindCommentReplyUserStage = {$unwind: {path: "$commentReplyUser", preserveNullAndEmptyArrays: true}}
+    const UnwindCommentReplyUserProfileStage = {$unwind: {path: "$commentReplyUserProfile", preserveNullAndEmptyArrays: true}}
 
     const projectionStage = {
       $project:{
@@ -210,6 +276,16 @@ export const ReadGroupService = async (req) => {
         "user.otp": 0,
         "user.createdAt": 0,
         "user.updatedAt": 0,
+
+        "userProfile._id": 0,
+        "userProfile.userID": 0,
+        "userProfile.address": 0,
+        "userProfile.bio": 0,
+        "userProfile.coverPicture": 0,
+        "userProfile.location": 0,
+        "userProfile.profession": 0,
+        "userProfile.createdAt": 0,
+        "userProfile.updatedAt": 0,
 
 
         "GroupPostByUser.username": 0,
@@ -230,22 +306,96 @@ export const ReadGroupService = async (req) => {
         "GroupPostByUserProfile.profession": 0,
         "GroupPostByUserProfile.createdAt": 0,
         "GroupPostByUserProfile.updatedAt": 0,
+
+        "PostReactionUser._id": 0,
+        "PostReactionUser.username": 0,
+        "PostReactionUser.phone": 0,
+        "PostReactionUser.email": 0,
+        "PostReactionUser.gender": 0,
+        "PostReactionUser.password": 0,
+        "PostReactionUser.otp": 0,
+        "PostReactionUser.createdAt": 0,
+        "PostReactionUser.updatedAt": 0,
       }
     }
 
+    const CommentProjectionStage = {
+      $project:{
+        "commentUser._id": 0,
+        "commentUser.username": 0,
+        "commentUser.phone": 0,
+        "commentUser.email": 0,
+        "commentUser.gender": 0,
+        "commentUser.password": 0,
+        "commentUser.otp": 0,
+        "commentUser.createdAt": 0,
+        "commentUser.updatedAt": 0,
+
+
+        "commentUserProfile._id": 0,
+        "commentUserProfile.userID": 0,
+        "commentUserProfile.address": 0,
+        "commentUserProfile.bio": 0,
+        "commentUserProfile.coverPicture": 0,
+        "commentUserProfile.location": 0,
+        "commentUserProfile.profession": 0,
+        "commentUserProfile.createdAt": 0,
+        "commentUserProfile.updatedAt": 0,
+      }
+    }
+
+    const CommentReplyProjectionStage = {
+      $project:{
+        "commentReplyUser._id": 0,
+        "commentReplyUser.username": 0,
+        "commentReplyUser.phone": 0,
+        "commentReplyUser.email": 0,
+        "commentReplyUser.gender": 0,
+        "commentReplyUser.password": 0,
+        "commentReplyUser.otp": 0,
+        "commentReplyUser.createdAt": 0,
+        "commentReplyUser.updatedAt": 0,
+
+
+        "commentReplyUserProfile._id": 0,
+        "commentReplyUserProfile.userID": 0,
+        "commentReplyUserProfile.address": 0,
+        "commentReplyUserProfile.bio": 0,
+        "commentReplyUserProfile.coverPicture": 0,
+        "commentReplyUserProfile.location": 0,
+        "commentReplyUserProfile.profession": 0,
+        "commentReplyUserProfile.createdAt": 0,
+        "commentReplyUserProfile.updatedAt": 0,
+      }
+    }
 
     const data = await GroupModel.aggregate([
       MatchStage,
       JoinWithUserStage,
+      JoinWithUserProfileStage,
       JoinWithPostStage,
       JoinWithGroupPostUserStage,
       JoinWithGroupPostByUserProfileStage,
+      JoinWithGroupReactionStage,
+      JoinWithReactionUserStage,
       //
       JoinWithCommentStage,
+      JoinWithCommentUserStage,
+      JoinWithCommentUserProfileStage,
+      UnwindCommentUserStage,
+      UnwindCommentUserProfileStage,
+
+      JoinWithCommentReplyUserStage,
+      JoinWithCommentReplyUserProfileStage,
+      UnwindCommentReplyUserStage,
+      UnwindCommentReplyUserProfileStage,
+
       //
       UnwindUserStage,
       UnwindUserProfileStage,
-      projectionStage
+      projectionStage,
+      CommentProjectionStage,
+      CommentReplyProjectionStage,
     ])
 
     return {
@@ -262,7 +412,6 @@ export const ReadGroupService = async (req) => {
     }
   }
 }
-
 
 
 export const CreateGroupPostService = async (req) => {
@@ -621,23 +770,518 @@ export const GroupPostRemoveLikeService = async (req) => {
 };
 
 
+// group post all comment service
+
+export const GroupCreateCommentService = async (req) => {
+  try{
+    const userId = req.headers.user_id
+    const groupID = req.params.groupID
+    const postID = req.params.postID
+    let {comment} = req.body
+
+
+    if(!comment){
+      return {
+        status: "failed",
+        message : "Comment are required",
+      }
+    }
+
+    const exitGroupPost = await GroupPostModel.findOne({groupID: groupID, _id: postID })
+    if(!exitGroupPost) {
+      return {
+        status: "failed",
+        message : "Group Post not found",
+      }
+    }
+
+
+    await GroupCommentModel.create({
+      groupID: groupID,
+      postID: postID,
+      userID: userId,
+      comment,
+    })
+
+    return {
+      status: "success",
+      message: "Comment created successfully",
+    }
+  }
+  catch(err){
+    return {
+      status: "failed",
+      message: "Failed to add comment",
+      error: err.toString(),
+    }
+  }
+}
+
+
+export const GroupUpdateCommentService = async (req) => {
+  try{
+    const userId = req.headers.user_id
+    const {groupID, postID, commentID} = req.params
+    let {comment} = req.body
+
+
+    if(!comment){
+      return {
+        status: "failed",
+        message : "Comment are required",
+      }
+    }
+
+    const exitGroup = await GroupCommentModel.findOne({ _id: commentID, groupID: groupID })
+    if(!exitGroup) {
+      return {
+        status: "failed",
+        message : "Group not found",
+      }
+    }
+
+    const exitGroupPost = await GroupCommentModel.findOne({ _id: commentID, postID: postID })
+    if(!exitGroupPost) {
+      return {
+        status: "failed",
+        message : "Group post not found",
+      }
+    }
+
+    const exitComment = await GroupCommentModel.findOne({_id:commentID,groupID:groupID, postID:postID})
+
+    if(!exitComment){
+      return {
+        status: "failed",
+        message : "comment not found",
+      }
+    }
 
 
 
+    const data = await GroupCommentModel.updateOne(
+      {
+        groupID: groupID,
+        postID: postID,
+        _id: commentID,
+        userID: userId,
+      },
+      {$set : {comment}}
+    )
+
+    return {
+      status: "success",
+      message: "Comment created successfully",
+      data : data
+    }
+  }
+  catch(err){
+    return {
+      status: "failed",
+      message: "Failed to add comment",
+      error: err.toString(),
+    }
+  }
+}
 
 
+export const GroupSingleReadCommentService = async (req) => {
+  try{
+    const userId = new ObjectId(req.headers.user_id)
+    const groupID = new ObjectId(req.params.groupID)
+    const  postID = new ObjectId(req.params.postID)
+    const commentID = new ObjectId(req.params.commentID)
 
 
+    let MatchStage = {
+      $match: {
+        groupID: groupID,
+        postID: postID,
+        _id: commentID,
+        userID: userId,
+      }
+    }
+
+    const projectionStage = {
+      $project: {
+        "updatedAt" : 0,
+        "createdAt" : 0,
+        "replies" : 0,
+        "_id" : 0,
+        "groupID" : 0,
+        "postID" : 0,
+        "userID" : 0,
+      }
+    }
+
+    const data = await GroupCommentModel.aggregate([
+      MatchStage,
+      projectionStage
+    ])
+
+    return {
+      status: "success",
+      message: "Comment single Read successfully",
+      data : data
+    }
+  }
+  catch(err){
+    return {
+      status: "failed",
+      message: "Failed to single Read comment",
+      error: err.toString(),
+    }
+  }
+}
 
 
+export const GroupByDeleteCommentService = async (req) => {
+  try{
+    const userId = req.headers.user_id
+    const {groupID, postID,commentID} = req.params
+
+    const exitComment = await GroupCommentModel.findOne({ _id: commentID, groupID: groupID, postID: postID, userID: userId })
+    if(!exitComment) {
+      return {
+        status: "failed",
+        message : "Comment not found",
+      }
+    }
+
+    const data = await GroupCommentModel.deleteOne({
+      _id: commentID,
+      userID: userId,
+      groupID: groupID,
+      postID: postID,
+    })
+
+    return {
+      status: "success",
+      message: "Comment deleted successfully",
+      data : data
+    }
+  }
+  catch(err){
+    return {
+      status: "failed",
+      message : "Failed to delete a comment",
+      error: err.toString(),
+    }
+  }
+}
 
 
-
-export const UpdateUserRoleInGroup = async (req, res) => {
+export const AddCommentReplyService = async (req) => {
   try {
-    const groupID = req.params.groupID;
+    const userId = req.headers.user_id;
+    const { groupID, postID, commentID } = req.params;
+    const { replyText } = req.body;
+
+    if (!userId || !groupID || !postID || !commentID || !replyText) {
+      return {
+        status: "failed",
+        message: "Missing required fields",
+      };
+    }
+
+    const replyComment = await GroupCommentModel.findOneAndUpdate(
+      { _id: commentID, groupID: groupID, postID: postID },
+      {
+        $push: {
+          replies: {
+            userID: userId,
+            replyText: replyText,
+            createdAt: new Date(),
+          },
+        },
+      },
+      { new: true }
+    );
+
+    if (!replyComment) {
+      return {
+        status: "failed",
+        message: "Comment not found",
+      };
+    }
+
+    return {
+      status: "success",
+      message: "Comment reply successfully added",
+    };
+  } catch (err) {
+    return {
+      status: "failed",
+      message: "Failed to add comment reply",
+      error: err.toString(),
+    };
+  }
+};
+
+
+
+export const UpdateCommentOrReplyService = async (req) => {
+  try {
+    const userID = req.headers.user_id;
+    const { replyText } = req.body;
+    const { groupID, postID, commentID, replyID } = req.params;
+
+    // Validate required fields
+    if (!commentID || !replyID || !userID || !replyText) {
+      return {
+        status: "failed",
+        message: "Missing required fields",
+      };
+    }
+
+
+    const comment = await GroupCommentModel.findOne({
+      groupID,
+      postID,
+      _id: commentID,
+      "replies._id": replyID,
+      "replies.userID": userID,
+    });
+
+    if (!comment) {
+      return {
+        status: "failed",
+        message: "Reply not found or unauthorized",
+      };
+    }
+
+    // Find and update the specific reply
+    const reply = comment.replies.id(replyID);
+    reply.replyText = replyText;
+
+    // Save the updated comment document
+    await comment.save();
+
+    return {
+      status: "success",
+      message: "Reply updated successfully",
+    };
+  } catch (err) {
+    console.error("Update error:", err);
+    return {
+      status: "failed",
+      message: "Failed to update reply",
+      error: err.toString(),
+    };
+  }
+};
+
+
+export const DeleteCommentReplyService = async (req) => {
+  try {
+    const userID = req.headers.user_id;
+    const { groupID, postID, commentID, replyID } = req.params;
+
+    // Validate required fields
+    if (!groupID || !postID || !commentID || !replyID || !userID) {
+      return {
+        status: "failed",
+        message: "Missing required fields",
+      };
+    }
+
+    const comment = await GroupCommentModel.findOne({groupID: groupID, postID: postID, _id:commentID});
+
+    if (!comment) {
+      return {
+        status: "failed",
+        message: "Comment not found",
+      };
+    }
+
+    const replyExists = comment.replies.some(
+      (reply) => reply._id.toString() === replyID && reply.userID.toString() === userID
+    );
+
+
+
+    if (!replyExists) {
+      return {
+        status: "failed",
+        message: "Reply not found or unauthorized",
+      };
+    }
+
+    // Use $pull to remove the specific reply from the replies array
+    const updateResult = await GroupCommentModel.updateOne(
+      {
+        groupID,
+        postID,
+        _id: commentID,
+      },
+      {
+        $pull: {
+          replies: { _id: replyID, userID: userID }, // Ensures only the user's reply is deleted
+        },
+      }
+    );
+
+    // Check if a reply was deleted
+    if (updateResult.modifiedCount === 0) {
+      return {
+        status: "failed",
+        message: "Reply not found or unauthorized",
+      };
+    }
+
+    return {
+      status: "success",
+      message: "Reply deleted successfully",
+    };
+
+  } catch (err) {
+    return {
+      status: "failed",
+      message: "Failed to delete the reply",
+      error: err.toString(),
+    };
+  }
+};
+
+
+export const SingleReadCommentReplyService = async (req) => {
+  try{
+    const userId = req.headers.user_id
+    const { groupID, postID, commentID, replyID } = req.params
+
+    const comment = await GroupCommentModel.findOne({
+      groupID,
+      postID,
+      _id: commentID,
+    })
+
+    // Check if the comment exists
+    if (!comment) {
+      return {
+        status: "failed",
+        message: "Comment not found",
+      }
+    }
+
+    const reply = comment.replies.find(
+      (reply) => reply._id.toString() === replyID && reply.userID.toString() === userId
+    )
+
+    if (!reply) {
+      return {
+        status: "failed",
+        message: "Reply not found or unauthorized",
+      }
+    }
+
+    return {
+      status: "success",
+      message: "Single read successfully",
+      data: reply,
+    }
+  }
+  catch (err){
+    return {
+      status: "failed",
+      message: "failed to single read reply",
+      error: err.toString(),
+    }
+  }
+}
+
+
+
+
+// add follower , remove follower
+export const addFollowerByGroupService = async (req) => {
+  try {
+    const userId = req.headers.user_id
+    const groupID = req.params.groupID
+
+    const group = await GroupModel.findById(groupID);
+    if (!group) {
+      return {
+        status: "failed",
+        message: "Group not found",
+      }
+    }
+
+    if (group.userID.toString() === userId) {
+      return {
+        status: "failed",
+        message: "You are the owner of this group",
+      }
+    }
+
+    const existingUser = group.followers.find((f) => f.userID.toString() === userId);
+    if (existingUser) {
+      return {
+        status: "failed",
+        message: "You are already follower",
+      };
+    }
+
+    group.followers.push({ userID: userId})
+    await group.save()
+
+    return {
+      status: "success",
+      message: "Successfully followed the group",
+    }
+
+  } catch (err) {
+    return {
+      status: "failed",
+      message: "Failed to add follower",
+      error: err.toString(),
+    }
+  }
+}
+
+
+
+export const removeFollowerByGroupService = async (req) => {
+  try {
+    const userId = req.headers.user_id
+    const groupID = req.params.groupID
+
+
+    const group = await GroupModel.findByIdAndUpdate(
+      groupID,
+      { $pull: { followers: { userID: userId } } },
+      { new: true }
+    );
+
+    if (!group) {
+      return {
+        status: "failed",
+        message: "Group not found",
+      };
+    }
+
+    return {
+      status: "success",
+      message: "Successfully unfollowed the group",
+    };
+
+  } catch (err) {
+    return {
+      status: "failed",
+      message: "Failed to remove follower",
+      error: err.toString(),
+    };
+  }
+}
+
+
+
+
+// Update User Role In Group Service
+export const UpdateUserRoleInGroupService = async (req) => {
+  try {
     const userID = req.params.userID;
-    const {role } = req.body
+    const groupID = req.params.groupID;
+    const {role} = req.body
 
     // check group
     const group = await GroupModel.findById(groupID)
@@ -648,9 +1292,11 @@ export const UpdateUserRoleInGroup = async (req, res) => {
       }
     }
 
+
     // check you are admin
     if (group.userID.toString() !== req.headers.user_id) {
       return {
+        status: "failed",
         message: "You are not the group admin"
       }
     }
@@ -659,6 +1305,7 @@ export const UpdateUserRoleInGroup = async (req, res) => {
     const follower = group.followers.find(f => f.userID.toString() === userID)
     if (!follower) {
       return {
+        status: "failed",
         message: "User is not a follower of this group"
       }
     }
@@ -669,7 +1316,7 @@ export const UpdateUserRoleInGroup = async (req, res) => {
 
     return {
       status: "success",
-      message: `User role updated to ${role} successfully`
+      message: `User role updated to successfully`
     }
   } catch (error) {
     return {

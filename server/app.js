@@ -72,15 +72,12 @@ mongoose.connect(URL, OPTION).then(()=> {
 })
 
 
-app.use(express.static('client/dist'))
-app.get("*", async(req, res)=> {
-  res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"))
-})
+// app.use(express.static('client/dist'))
+// app.get("*", async(req, res)=> {
+//   res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"))
+// })
 
 
 // TODO : ROUTING CONFIGURATION
 app.use('/api', router)
-app.use('/*', async (req, res) => {
-  res.send("404 page not found")
-})
 export default app;

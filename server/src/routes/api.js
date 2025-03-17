@@ -87,6 +87,25 @@ router.get('/UpdateBySinglePostList/:groupID/:postID', AuthMiddleware, GroupCont
 router.post('/GroupPostAddLike/:groupID/:postID', AuthMiddleware, GroupController.GroupPostAddLike)
 router.post('/GroupPostRemoveLike/:groupID/:postID/:reactId', AuthMiddleware, GroupController.GroupPostRemoveLike)
 
+// group post comment create api
+router.post('/GroupByCreateComment/:groupID/:postID', AuthMiddleware, GroupController.GroupCreateComment)
+router.post('/GroupByUpdateComment/:groupID/:postID/:commentID', AuthMiddleware, GroupController.GroupUpdateComment)
+router.get('/GroupBySingleReadComment/:groupID/:postID/:commentID', AuthMiddleware, GroupController.GroupSingleReadComment)
+router.post('/GroupByDeleteComment/:groupID/:postID/:commentID', AuthMiddleware, GroupController.GroupByDeleteComment)
+
+// add to comment reply
+router.post('/AddCommentReply/:groupID/:postID/:commentID', AuthMiddleware, GroupController.AddCommentReply)
+router.post('/UpdateCommentOrReply/:groupID/:postID/:commentID/:replyID', AuthMiddleware, GroupController.UpdateCommentOrReply)
+router.post('/DeleteCommentReply/:groupID/:postID/:commentID/:replyID', AuthMiddleware, GroupController.DeleteCommentReply)
+router.get('/SingleReadCommentReply/:groupID/:postID/:commentID/:replyID', AuthMiddleware, GroupController.SingleReadCommentReply)
+
+//add follower in group
+router.post('/addFollowerByGroup/:groupID', AuthMiddleware, GroupController.addFollowerByGroup)
+router.post('/removeFollowerByGroup/:groupID', AuthMiddleware, GroupController.removeFollowerByGroup)
+
+
+router.post('/UpdateUserRoleInGroup/:groupID/:userID', AuthMiddleware, GroupController.UpdateUserRoleInGroup)
+
 
 
 

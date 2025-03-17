@@ -20,7 +20,7 @@ cloudinary.config({
 
 
 
-export const RegisterService = async (req, res) => {
+export const RegisterService = async (req) => {
     try{
         let reqBody = req.body
         let user = await UserModel.findOne({email : reqBody.email})
@@ -118,12 +118,11 @@ export const LoginService = async (req,res) => {
     }
 }
 
-
-export const UpdateProfileService = async (req, res) => {
-    try{
-        let user_id = req.headers.user_id
-        let reqBody = req.body
-        reqBody.userID = user_id
+export const UpdateProfileService = async (req) => {
+    try {
+        let user_id = req.headers.user_id;
+        let reqBody = req.body;
+        reqBody.userID = user_id;
 
         const file = req.files?.image;
 
@@ -146,72 +145,67 @@ export const UpdateProfileService = async (req, res) => {
             ...(reqBody.location && { location: reqBody.location }),
         };
 
-        // If an image file is provided, upload it to Cloudinary
+        // আগের প্রোফাইল তথ্য খুঁজে বের করা
+        let profileImage = await UserProfileModel.findOne({ userID: user_id });
+
+        // যদি নতুন ছবি আসে, তাহলে আপলোড করো
         if (file) {
             const uploadResult = await new Promise((resolve, reject) => {
                 cloudinary.uploader.upload_stream(
-                  {folder: "user_photo"},
+                  { folder: "user_photo" },
                   (error, result) => {
                       if (error) reject(error);
                       else resolve(result);
-                  }).end(file.data)
-            })
-            profileFields.profilePicture = uploadResult.secure_url; // Add image URL to the profile fields
+                  }
+                ).end(file.data);
+            });
+
+            profileFields.profilePicture = uploadResult.secure_url; // নতুন ছবি সেট করো
+
+            // যদি আগের `profilePicture` থাকে, তাহলে সেটা Cloudinary থেকে ডিলিট করো
+            if (profileImage && profileImage.profilePicture) {
+                const publicId = profileImage.profilePicture.split('/').pop().split('.')[0];
+                await cloudinary.uploader.destroy(`user_photo/${publicId}`);
+            }
         }
 
-        // ব্লগ পোস্ট খোঁজা যাতে তার ইমেজ URL পাওয়া যায়
-        let profileImage = await UserProfileModel.findOne({ userID: user_id});
-
-        if (!profileImage) {
-            return {
-                status: "failed",
-                message: "profilePicture  not found",
-            };
-        }
-        // যদি ব্লগ পোস্টে ছবি থাকে, তাহলে Cloudinary থেকে মুছতে হবে
-        if (profileImage["profilePicture"]) {
-            // Cloudinary-র public_id বের করা (image URL থেকে)
-            const publicId = profileImage["profilePicture"].split('/').pop().split('.')[0];
-            // Cloudinary থেকে ছবি ডিলিট করা
-            await cloudinary.uploader.destroy(`user_photo/${publicId}`);
-        }
-
+        // ইউজার তথ্য আপডেট করা
         const userUpdateResult = await UserModel.updateOne(
           { _id: user_id },
           { $set: userFields }
         );
 
+        // প্রোফাইল তথ্য আপডেট করা
         const profileUpdateResult = await UserProfileModel.updateOne(
           { userID: user_id },
           { $set: profileFields },
-          { upsert: true } // Create a new profile if it doesn't exist
+          { upsert: true } // প্রোফাইল না থাকলে নতুন প্রোফাইল তৈরি করবে
         );
+
         if (userUpdateResult.nModified === 0 && profileUpdateResult.nModified === 0) {
             return {
                 status: "failed",
                 message: "No changes were made to the profile.",
-            }
+            };
         }
+
         return {
             status: "success",
             message: "Profile updated successfully.",
             userUpdateResult,
             profileUpdateResult,
-        }
-    }
-    catch (err){
+        };
+    } catch (err) {
         return {
-            status : "failed",
-            message : "Profile Update Failed",
-            error : err.toString()
-        }
+            status: "failed",
+            message: "Profile Update Failed",
+            error: err.toString(),
+        };
     }
-}
+};
 
 
-
-
-export const ReadProfileService = async (req, res) => {
+export const ReadProfileService = async (req) => {
     try{
         let user_id = new ObjectId(req.headers.user_id)
 
@@ -282,7 +276,7 @@ export const LogOutProfileService = async (req, res) => {
     }
 }
 
-export const DeleteProfileService = async (req, res) => {
+export const DeleteProfileService = async (req) => {
     try{
         let userID = req.headers.user_id
         await UserModel.deleteOne({_id: userID})
@@ -516,7 +510,7 @@ export const seeAllUserService = async (req) => {
 }
 
 
-export const RecoverEmailVerifyService = async (req, res) => {
+export const RecoverEmailVerifyService = async (req) => {
     try{
         let email = req.params.email;
         let user = await UserModel.aggregate([
@@ -555,7 +549,7 @@ export const RecoverEmailVerifyService = async (req, res) => {
     }
 }
 
-export const RecoverVerifyOtpService = async (req, res) => {
+export const RecoverVerifyOtpService = async (req) => {
     try{
         let {email, otp} = req.body
         otp = parseInt(otp)
@@ -598,7 +592,7 @@ export const RecoverVerifyOtpService = async (req, res) => {
     }
 }
 
-export const ResetPasswordService = async (req, res) => {
+export const ResetPasswordService = async (req) => {
     try{
         let reqBody = req.body
         let {email ,otp} = reqBody
