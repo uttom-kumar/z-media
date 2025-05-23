@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d4537776-af3f-4fbf-8756-a126fe160dbe" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/client/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/component/group-component/Group.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/page/group/GroupCreate-page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/render.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/group-component/group-page-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/group-component/GroupCreate.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/header/app-navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/header/app-navbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/user-profile/user-profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user-profile/user-profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/user/login-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user/login-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/page/group/group-page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/page/group/group-page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/comment-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/comment-store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/friend-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/friend-store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/post-list-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/post-list-store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/reaction-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/reaction-store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/story-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/story-store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/user-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/user-store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/utility/utility.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utility/utility.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/vite.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.env" beforeDir="false" afterPath="$PROJECT_DIR$/server/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/config/config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/services/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/services/UserService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/utility/EmailUtility.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/utility/EmailUtility.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/utility/TokenUtility.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/utility/TokenUtility.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2rX4jvCCmYWtVM98hKMcLEuiZom" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="openDirectoriesWithSingleClick" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/uttom/Desktop/z-media/client/src/page/group",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.rainbow.brackets.disable.when",
+    "ts.external.directory.path": "/snap/webstorm/466/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/page/group" />
+      <recent name="F:\MERN Stack HW\Practice Project\socail-media\client\src\assets" />
+      <recent name="F:\MERN Stack HW\Practice Project\socail-media\client\public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\MERN Stack HW\Practice Project\socail-media\client\src\component\friends\suggested-user" />
+      <recent name="F:\MERN Stack HW\Practice Project\socail-media\server" />
+      <recent name="F:\MERN Stack HW\Practice Project\socail-media\client\public" />
+      <recent name="F:\MERN Stack HW\Practice Project\socail-media\client\src\component\post-list" />
+      <recent name="F:\MERN Stack HW\Practice Project\socail-media\client\src\app" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-WS-251.25410.117" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d4537776-af3f-4fbf-8756-a126fe160dbe" name="Changes" comment="" />
+      <created>1736692225636</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1736692225636</updated>
+      <workItem from="1736692228529" duration="13537000" />
+      <workItem from="1736739463227" duration="22526000" />
+      <workItem from="1736787242514" duration="10565000" />
+      <workItem from="1736799128486" duration="2027000" />
+      <workItem from="1736869644697" duration="159000" />
+      <workItem from="1736870641967" duration="7437000" />
+      <workItem from="1736917854671" duration="4337000" />
+      <workItem from="1736938173067" duration="343000" />
+      <workItem from="1736959485313" duration="528000" />
+      <workItem from="1737036016521" duration="20224000" />
+      <workItem from="1737101291508" duration="607000" />
+      <workItem from="1737117962804" duration="14195000" />
+      <workItem from="1737132857001" duration="8267000" />
+      <workItem from="1737180845235" duration="9710000" />
+      <workItem from="1737206909937" duration="21047000" />
+      <workItem from="1737265940858" duration="8243000" />
+      <workItem from="1737291716937" duration="21295000" />
+      <workItem from="1737350055511" duration="32343000" />
+      <workItem from="1737443704247" duration="34964000" />
+      <workItem from="1737522473416" duration="3268000" />
+      <workItem from="1737563174797" duration="18035000" />
+      <workItem from="1737612807473" duration="29324000" />
+      <workItem from="1737654391705" duration="3731000" />
+      <workItem from="1737706168905" duration="7690000" />
+      <workItem from="1737736813547" duration="14358000" />
+      <workItem from="1737780940151" duration="7849000" />
+      <workItem from="1737822147877" duration="7209000" />
+      <workItem from="1737886958924" duration="25927000" />
+      <workItem from="1737959119431" duration="28867000" />
+      <workItem from="1738065503462" duration="20905000" />
+      <workItem from="1738126356670" duration="2615000" />
+      <workItem from="1738130765090" duration="1903000" />
+      <workItem from="1738141258099" duration="6218000" />
+      <workItem from="1738159749539" duration="12039000" />
+      <workItem from="1738226439751" duration="5629000" />
+      <workItem from="1738262164096" duration="1865000" />
+      <workItem from="1738302178935" duration="35205000" />
+      <workItem from="1738350155594" duration="152000" />
+      <workItem from="1738350406659" duration="461000" />
+      <workItem from="1738397458842" duration="25916000" />
+      <workItem from="1738424145111" duration="8745000" />
+      <workItem from="1738479658986" duration="39675000" />
+      <workItem from="1738556121841" duration="4887000" />
+      <workItem from="1738647420269" duration="41563000" />
+      <workItem from="1738740723770" duration="21942000" />
+      <workItem from="1738929227277" duration="16074000" />
+      <workItem from="1739029683811" duration="19366000" />
+      <workItem from="1739105127328" duration="911000" />
+      <workItem from="1739106343274" duration="166000" />
+      <workItem from="1739106532442" duration="4027000" />
+      <workItem from="1739378900308" duration="5629000" />
+      <workItem from="1739384653170" duration="156000" />
+      <workItem from="1739384829376" duration="14045000" />
+      <workItem from="1739399415649" duration="1081000" />
+      <workItem from="1739421094682" duration="12000000" />
+      <workItem from="1739595050165" duration="6578000" />
+      <workItem from="1739606747135" duration="1456000" />
+      <workItem from="1739608924028" duration="12429000" />
+      <workItem from="1739678816758" duration="2164000" />
+      <workItem from="1739696184331" duration="31528000" />
+      <workItem from="1739764606915" duration="29193000" />
+      <workItem from="1739957786261" duration="888000" />
+      <workItem from="1740058743360" duration="2809000" />
+      <workItem from="1740148378663" duration="5344000" />
+      <workItem from="1740154439229" duration="5706000" />
+      <workItem from="1740216262286" duration="2317000" />
+      <workItem from="1740242781804" duration="4294000" />
+      <workItem from="1740412737783" duration="7918000" />
+      <workItem from="1740465896288" duration="7916000" />
+      <workItem from="1742053457295" duration="632000" />
+      <workItem from="1747575260156" duration="2003000" />
+      <workItem from="1747582515418" duration="2000" />
+      <workItem from="1747592501262" duration="14000" />
+      <workItem from="1747592767402" duration="1458000" />
+      <workItem from="1747672153432" duration="3000" />
+      <workItem from="1747974845823" duration="6291000" />
+      <workItem from="1748013106657" duration="5671000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
+</project>
