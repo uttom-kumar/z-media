@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
 dotenv.config()
-const {DATABASE, REQUEST_NUMBER, REQUEST_TIME, URL_ENCODE, WEB_CACHE, WEB_JSON_SIZE ,LOCAL_URL} = process.env
+const {DATABASE, REQUEST_NUMBER, REQUEST_TIME, URL_ENCODE, WEB_CACHE, WEB_JSON_SIZE ,LOCAL_URL,LIVE_URL} = process.env
 
 
 
@@ -28,6 +28,7 @@ app.use(helmet())
 app.use(cors({
   origin: [
       LOCAL_URL,
+      LIVE_URL
   ],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
   credentials: true,
