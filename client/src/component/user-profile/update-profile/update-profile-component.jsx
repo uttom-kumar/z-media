@@ -3,11 +3,12 @@ import {profileUrl} from "../../../utility/utility.js";
 import UserStore from "../../../store/user-store.js";
 import toast from "react-hot-toast";
 import LoadingSkeleton from "../../../skeleton/loading-skeleton.jsx";
+import CustomLoadingButton from "../../LoadingButton/CustomLoadingButton.jsx";
 
 const UpdateProfileComponent = () => {
   const {profileList, profileListRequest, updateProfileInput,UpdateProfileOnchange,profileUpdateRequest,
-    SingleProfileDetailsRequest} = UserStore()
-  const [loading,setLoading] = useState('hidden');
+    SingleProfileDetailsRequest, isLoading, setLoading} = UserStore()
+  const [skeleton, setSkeleton] = useState("hidden");
   const [imagePreview, setImagePreview] = useState(null);
   const [imageFile, setImageFile] = useState(null);
 
@@ -23,16 +24,19 @@ const UpdateProfileComponent = () => {
     formData.append("address", updateProfileInput.address); 
     if (imageFile) formData.append("image", imageFile);
 
-    setLoading('block');
+    setLoading(true);
+    setSkeleton('block');
     let res = await profileUpdateRequest(formData)
     if(res===true){
       await profileListRequest()
       await SingleProfileDetailsRequest()
-      setLoading('hidden');
+      setLoading(false);
+      setSkeleton('hidden');
       toast.success("Profile Updated Successfully")
     }
     else {
-      setLoading('hidden');
+      setLoading(false)
+      setSkeleton('hidden');
       toast.error("failed to update profile")
     }
   }
@@ -51,12 +55,11 @@ const UpdateProfileComponent = () => {
       await SingleProfileDetailsRequest()
     })()
   },[])
-  console.log()
 
 
   return (
     <>
-      <div className={loading}>
+      <div className={skeleton}>
         <LoadingSkeleton />
       </div>
       <div className="w-[90%] md:w-[70%] lg:w-[70%] xl:w-[60%] mx-auto">
@@ -238,11 +241,11 @@ const UpdateProfileComponent = () => {
 
             {/*-- submit button --*/}
             <div className="text-end">
-              <button
-                onClick={submitHandler}
-                className="w-full lsm:w-auto lsm:px-10 py-2 bg-blue-500 text-white rounded">
-                Submit
-              </button>
+             <CustomLoadingButton
+              text={'Update Profile'}
+              onClick={submitHandler}
+              isLoading={isLoading}
+             />
             </div>
           </div>
         </div>

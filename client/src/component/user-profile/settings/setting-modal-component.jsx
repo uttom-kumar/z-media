@@ -1,6 +1,7 @@
 import {Link, useNavigate} from "react-router-dom";
 import UserStore from "../../../store/user-store.js";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
 
 const SettingModalComponent = ({onClose}) => {
   const { LogoutRequest } = UserStore();
@@ -11,6 +12,7 @@ const SettingModalComponent = ({onClose}) => {
 
     if(res['status'] === "success"){
       navigate('/Login')
+      Cookies.remove('isUserLoggedIn')
       toast.success("Log Out successfully")
     }
   }

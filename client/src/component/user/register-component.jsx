@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import {AiFillQuestionCircle} from "react-icons/ai";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import CustomLoadingButton from "../LoadingButton/CustomLoadingButton.jsx";
 
 
 
@@ -16,7 +17,7 @@ const RegisterComponent = () => {
     const [showPass, setShowPass] = useState(false);
     const [showCPass, setShowCPass] = useState(false);
     const [confirmInput, setConfirmOnchange] = useState("");
-    const {registerInput, registerOnchange, RegisterRequest } = UserStore()
+    const {registerInput, registerOnchange, RegisterRequest , isLoading, setLoading} = UserStore()
     const [msg, setMsg] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate()
@@ -54,14 +55,17 @@ const RegisterComponent = () => {
 
 
         try {
+            setLoading(true)
             const res = await RegisterRequest(registerInput);
-            console.log(res)
             if (res.status === "success") {
+                setLoading(false)
                 navigate("/login");
             } else {
+                setLoading(false)
                 setMsg(res.message);
             }
         } catch (err) {
+            setLoading(false)
             toast.error("Something went wrong!");
         }
     };
@@ -256,9 +260,12 @@ const RegisterComponent = () => {
                                 <p className="text-red-600 text-[12px]">{msg}</p>
                                 <p className="text-red-600 mb-3 text-[12px]">{error}</p>
                                 <div>
-                                    <button type="submit" className="w-full bg-blue-400 py-2 rounded text-white">
-                                        Register
-                                    </button>
+                                    <CustomLoadingButton
+                                        text='Create Account'
+                                        onClick={submitHandler}
+                                        disabled={isLoading}
+                                        type={'submit'}
+                                    />
                                 </div>
                             </form>
                         </div>

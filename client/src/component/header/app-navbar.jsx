@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {Link, NavLink} from "react-router-dom";
 import { IoHomeOutline, IoHomeSharp } from "react-icons/io5";
-import { MdExplore, MdOutlineExplore } from "react-icons/md";
-import {FaBars, FaSearch, FaUserFriends} from "react-icons/fa";
+import {FaSearch, FaUserFriends} from "react-icons/fa";
 import { LiaUserFriendsSolid } from "react-icons/lia";
 import { FiPlusSquare } from "react-icons/fi";
-import {BsGrid3X3GapFill, BsMessenger} from "react-icons/bs";
+import { BsMessenger} from "react-icons/bs";
 import { PiMessengerLogo } from "react-icons/pi";
 import {IoIosSettings, IoMdNotifications, IoMdNotificationsOutline} from "react-icons/io";
 import UserStore from "../../store/user-store.js";
@@ -16,16 +15,12 @@ import Skeleton, {SkeletonTheme} from "react-loading-skeleton";
 import SettingModalComponent from "../user-profile/settings/setting-modal-component.jsx";
 import SettingModal from "../user-profile/settings/setting-modal.jsx";
 import {GoSearch} from "react-icons/go";
-import ModalComponent from "../modal/modal-component.jsx";
-import MoreButtonComponent from "./more-button-component.jsx";
-import {HiMiniUserGroup} from "react-icons/hi2";
 import {RiGroup2Fill} from "react-icons/ri";
 
 const AppNavbar = () => {
     const {profileList, profileListRequest} = UserStore()
     const [showModal, setShowModal] = useState(false)
     const [settingModal, setSettingModal] = useState(false)
-    const [MoreModal, setMoreModal] = useState(false)
     useEffect(() => {
         (async () => {
             await profileListRequest()

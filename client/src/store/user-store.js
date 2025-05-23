@@ -1,11 +1,14 @@
 import {create} from "zustand";
 import axios from "axios";
 import {Unauthorized} from "../utility/utility.js";
+import toast from "react-hot-toast";
 
 const BaseURL = import.meta.env.VITE_BASE_URI;
 
 
 const UserStore = create((set) => ({
+    isLoading: false,
+    setLoading: (value) => set({ isLoading: value }),
 
 
     registerInput: { fullName: "", username: "", gender:"", email:"", password: "",phone:"" },
@@ -18,9 +21,14 @@ const UserStore = create((set) => ({
         }))
     },
     RegisterRequest: async (reqBody) => {
-        let url = `${BaseURL}/Register`
-        let res = await axios.post(url,reqBody, {withCredentials: true})
-        return res.data
+        try{
+            let url = `${BaseURL}/Register`
+            let res = await axios.post(url,reqBody, {withCredentials: true})
+            return res.data
+        }
+        catch (err){
+            toast.error(err.response.data.message)
+        }
     },
     // ---- login request ---------------
     loginInput : {email:"", password:""},

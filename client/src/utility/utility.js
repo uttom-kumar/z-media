@@ -2,13 +2,15 @@ import Cookies from "js-cookie";
 
 
 export const isLoggedIn = () => {
-    let token = Cookies.get('token')
+    let token = Cookies.get('isUserLoggedIn')
+
     if(token){
-        return !!Cookies.get('token');
+        return true
     }
     else{
         sessionStorage.clear()
         localStorage.clear()
+        Cookies.remove('isUserLoggedIn')
         return false
     }
 }
@@ -19,16 +21,10 @@ export const getEmail= () => {
 
 
 export function Unauthorized(code) {
-    const rememberMe = localStorage.getItem("rememberMe") === "true";
-
     if (code === 401) {
         sessionStorage.clear();
+        Cookies.remove('isUserLoggedIn');
         Cookies.remove('token');
-
-        if (!rememberMe) {
-            localStorage.clear();
-        }
-
         window.location.href = "/login";
     }
 }

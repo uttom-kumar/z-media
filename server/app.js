@@ -49,10 +49,7 @@ app.use(fileUpload({
 
 /* ------ ------ */
 let URL = DATABASE
-let OPTION = {
-  user: '', pass: '',
-  autoIndex : true,
-}
+let OPTION = {autoIndex : true}
 mongoose.connect(URL, OPTION).then(()=> {
     try{
         console.log('Connected to MongoDB')

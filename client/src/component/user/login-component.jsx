@@ -6,10 +6,12 @@ import {FcGoogle} from "react-icons/fc";
 import {FaFacebook} from "react-icons/fa";
 import UserStore from "../../store/user-store.js";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
+import CustomLoadingButton from "../LoadingButton/CustomLoadingButton.jsx";
 
 const LoginComponent = () => {
     const [showPass, setShowPass] = useState(false);
-    const {loginInput, loginOnchange, loginRequest, profileListRequest} = UserStore()
+    const {loginInput, loginOnchange, loginRequest, isLoading, setLoading} = UserStore()
     const [error, setError] = useState("");
     const navigate = useNavigate()
     const [rememberMe, setRememberMe] = useState(false);
@@ -28,26 +30,33 @@ const LoginComponent = () => {
         }
 
         try {
+            setLoading(true)
             const res = await loginRequest(loginInput);
             if (res.status === "success") {
+                setLoading(false)
+                Cookies.set('isUserLoggedIn', 'true')
                 loginOnchange("email", "");
                 loginOnchange("password", "");
                 navigate('/')
                 // Save login details if "Remember Me" is checked
                 if (rememberMe) {
+                    setLoading(false)
                     localStorage.setItem("email", loginInput.email);
-                    localStorage.setItem("password", loginInput.password); // NOT recommended for production
+                    localStorage.setItem("password", loginInput.password);
                     localStorage.setItem("rememberMe", "true");
                 } else {
+                    setLoading(false)
                     localStorage.removeItem("email");
                     localStorage.removeItem("password");
                     localStorage.removeItem("rememberMe");
                 }
             }
             else {
+                setLoading(false)
                 setError(res.message);
             }
         } catch (err) {
+            setLoading(false)
             toast.error("Something went wrong!");
         }
     };
@@ -147,9 +156,12 @@ const LoginComponent = () => {
                                 </div>
                                 <p className="text-red-600 mb-3">{error}</p>
                                 <div>
-                                    <button type="submit" className="w-full cursor-pointer bg-blue-500 py-2 rounded text-white">
-                                        Log in
-                                    </button>
+                                    <CustomLoadingButton
+                                        text='login'
+                                        onClick={submitHandler}
+                                        disabled={isLoading}
+                                        type={'submit'}
+                                    />
                                 </div>
                             </form>
                             <div className="text-center mt-5">
