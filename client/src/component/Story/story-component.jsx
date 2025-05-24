@@ -61,7 +61,7 @@ const SweetSlider = () => {
         allowTouchMove={false}
         breakpoints={{
           100: {
-            slidesPerView: 2,
+            slidesPerView: 3,
             spaceBetween: 6,
           },
           640: {
@@ -73,11 +73,11 @@ const SweetSlider = () => {
             spaceBetween: 10,   // Adjusted space between slides
           },
           1024: {
-            slidesPerView: 3,  // Adjusted for 4 slides on large screen
+            slidesPerView: 4,  // Adjusted for 4 slides on large screen
             spaceBetween: 10,   // Adjusted space between slides
           },
           1280: {
-            slidesPerView: 4,  // Adjusted for 5 slides on extra-large screen
+            slidesPerView: 5,  // Adjusted for 5 slides on extra-large screen
             spaceBetween: 10,   // Adjusted space between slides
           },
         }}
