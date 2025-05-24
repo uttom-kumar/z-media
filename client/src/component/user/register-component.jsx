@@ -35,7 +35,7 @@ const RegisterComponent = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        const usernameRegex = /^[a-zA-Z][a-zA-Z0-9_-]{1,14}[a-zA-Z0-9]$/;
+        const usernameRegex = /^[a-z][a-z0-9_-]{1,6}[a-z0-9]$/;
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
         const phoneRegex = /^\+?[1-9]\d{1,14}$/;
 
@@ -45,7 +45,8 @@ const RegisterComponent = () => {
         if (!registerInput.email) return setError("Email is required");
         if (!emailRegex.test(registerInput.email)) return setError("Please enter a valid email address");
         if (!registerInput.username) return setError("Username is required");
-        if (!usernameRegex.test(registerInput.username)) return setError("Username must start with a letter, be 3-16 characters long, and only contain letters, numbers, underscores, or hyphens.");
+        if (!usernameRegex.test(registerInput.username)) return setError("Username must start with a letter, be 3-7" +
+            " characters long, and only contain letters, numbers, underscores, or hyphens.");
         if (!registerInput.password) return setError("Password is required");
         if (!passwordRegex.test(registerInput.password)) return setError("Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
         if (!registerInput.gender) return setError("Gender is required");

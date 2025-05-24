@@ -29,6 +29,11 @@ export function Unauthorized(code) {
     }
 }
 
+export const usernameValidation = (username) => {
+    const regex = /^[a-z0-9]+$/;
+    return regex.test(username);
+};
+
 
 export  const TimestampToDate = (timestamp) => {
     let date = new Date(timestamp);

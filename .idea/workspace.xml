@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d4537776-af3f-4fbf-8756-a126fe160dbe" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/user-profile/update-profile/update-profile-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user-profile/update-profile/update-profile-component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/services/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/services/UserService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/user/register-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user/register-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/utility/utility.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utility/utility.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/UserModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/UserModel.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +161,8 @@
       <workItem from="1747974845823" duration="6291000" />
       <workItem from="1748013106657" duration="5671000" />
       <workItem from="1748020985607" duration="7755000" />
-      <workItem from="1748068551526" duration="1032000" />
+      <workItem from="1748068551526" duration="1265000" />
+      <workItem from="1748070698321" duration="1005000" />
     </task>
     <servers />
   </component>
