@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4537776-af3f-4fbf-8756-a126fe160dbe" name="Changes" comment="" />
+    <list default="true" id="d4537776-af3f-4fbf-8756-a126fe160dbe" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/user-profile/update-profile/update-profile-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user-profile/update-profile/update-profile-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/services/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/services/UserService.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -155,7 +159,8 @@
       <workItem from="1747672153432" duration="3000" />
       <workItem from="1747974845823" duration="6291000" />
       <workItem from="1748013106657" duration="5671000" />
-      <workItem from="1748020985607" duration="7278000" />
+      <workItem from="1748020985607" duration="7755000" />
+      <workItem from="1748068551526" duration="1032000" />
     </task>
     <servers />
   </component>

@@ -76,9 +76,9 @@ export const RegisterService = async (req) => {
 
 export const LoginService = async (req,res) => {
     try{
-        let {email,password} = req.body
+        let { email: loginInput,password} = req.body
         let user = await UserModel.findOne({
-            $or : [{email : email}, {username: email}]
+            $or : [{email : loginInput}, {username: loginInput}]
         })
 
         if (!user) {

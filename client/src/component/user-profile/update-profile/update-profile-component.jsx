@@ -167,36 +167,23 @@ const UpdateProfileComponent = () => {
               </div>
             </div>
             {/*--------gender section--------------*/}
-            <div className="my-5 p-5 bg-white rounded">
-              <h1 className="font-bold">Gender</h1>
-              <div className="flex items-center gap-5">
-                <p className="flex gap-1 items-center">
-                  <input
-                    className="cursor-pointer" type="radio" id="male" name="gender"
-                    value="Male"
-                    // checked={profile?.gender === 'Male'}
-                    onChange={(e) => UpdateProfileOnchange("gender", e.target.value)}
-                  />
-                  <label className="cursor-pointer" htmlFor="male">Male</label>
-                </p>
-                <p className="flex gap-1 items-center">
-                  <input
-                    className="cursor-pointer" type="radio" id="Female" name="gender"
-                    value="Female"
-                    // checked={profile?.gender === 'Female'}
-                    onChange={(e) => UpdateProfileOnchange("gender", e.target.value)}
-                  />
-                  <label className="cursor-pointer" htmlFor="Female">Female</label>
-                </p>
-                <p className="flex gap-1 items-center">
-                  <input
-                    className="cursor-pointer" type="radio" id="custom" name="gender"
-                    value="Custom"
-                    // checked={profile?.gender === 'Custom'}
-                    onChange={(e) => UpdateProfileOnchange("gender", e.target.value)}
-                  />
-                  <label className="cursor-pointer" htmlFor="custom">Custom</label>
-                </p>
+            {/*--------gender section--------------*/}
+            <div className="mb-5">
+              <label className="font-bold block mb-2">Gender</label>
+              <div className="flex gap-6">
+                {['Male', 'Female', 'Other'].map((gender) => (
+                    <label key={gender} className="flex items-center gap-2 cursor-pointer">
+                      <input
+                          type="radio"
+                          name="gender"
+                          value={gender}
+                          checked={updateProfileInput?.gender === gender}
+                          onChange={(e) => UpdateProfileOnchange("gender", e.target.value)}
+                          className="accent-blue-600"
+                      />
+                      <span>{gender}</span>
+                    </label>
+                ))}
               </div>
             </div>
             {/*---- profession section ------*/}
