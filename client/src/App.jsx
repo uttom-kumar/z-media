@@ -68,7 +68,8 @@ const App = (props) => {
                     <Route path="/notifications" element={<PrivetRoute><NotificationPage /></PrivetRoute>} />
                     <Route path="/profile" element={<PrivetRoute><ProfileRead /></PrivetRoute>} />
                     <Route path="/profile/:userID" element={<PrivetRoute><SingleUserPage /></PrivetRoute>} />
-                    <Route path="/profile/update" element={<PrivetRoute><UpdateProfile /></PrivetRoute>} />
+                    <Route path="/profile/update/info" element={<PrivetRoute><UpdateProfile /></PrivetRoute>} />
+                    <Route path="/profile/update/password" element={<PrivetRoute><UpdateProfile /></PrivetRoute>} />
 
                     <Route path="/story" element={<PrivetRoute><CreateStory /></PrivetRoute>} />
                     <Route path="/create-text-story" element={<PrivetRoute><CreateTextPage /></PrivetRoute>} />

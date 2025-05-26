@@ -64,13 +64,10 @@ const UserProfile = () => {
                   </div>
                   <div className="flex items-center gap-5">
                     <div className="flex items-center gap-5">
-                      <Link to={`/profile/update`}
+                      <Link to={`/profile/update/info`}
                             className="px-3 py-2 text-sm text-white font-semibold bg-blue-400 rounded">
                         Edit profile
                       </Link>
-                      <button className="px-3 py-2 text-sm text-white font-semibold bg-blue-400 rounded">
-                        View archive
-                      </button>
                     </div>
                   </div>
                   <div className="flex space-x-4 mt-2">

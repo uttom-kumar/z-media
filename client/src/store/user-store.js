@@ -88,7 +88,12 @@ const UserStore = create((set) => ({
         try{
             let url = `${BaseURL}/UpdateProfile`
             let res = await axios.post(url,reqBody, {withCredentials: true} )
-            return res.data['status'] === 'success'
+            if(res.data['status'] === 'success') {
+                return res.data['status'] === 'success'
+            }
+            else{
+                toast.error(res.data.message)
+            }
         }
         catch (err){
             Unauthorized(err.response.status)

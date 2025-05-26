@@ -50,12 +50,12 @@ export const RegisterService = async (req) => {
             };
         }
 
-        // Hash the user's password
-        const salt = await bcrypt.genSalt(10);  // Generate salt with a strength of 10
-        const hashedPassword = await bcrypt.hash(reqBody.password, salt); // Hash the password
-
-        // Update the password in reqBody with the hashed one
-        reqBody.password = hashedPassword;
+        // // Hash the user's password
+        // const salt = await bcrypt.genSalt(10);  // Generate salt with a strength of 10
+        // const hashedPassword = await bcrypt.hash(reqBody.password, salt); // Hash the password
+        //
+        // // Update the password in reqBody with the hashed one
+        // reqBody.password = hashedPassword;
        
         const data = await UserModel.create(reqBody)
         return {
@@ -121,71 +121,110 @@ export const LoginService = async (req,res) => {
     }
 }
 
+
 export const UpdateProfileService = async (req) => {
     try {
-        let user_id = req.headers.user_id;
-        let reqBody = req.body;
+        const user_id = req.headers.user_id;
+        const reqBody = req.body;
         reqBody.userID = user_id;
 
         const file = req.files?.image;
 
-        // Fields to be updated in the `UserModel`
-        const userFields = {
-            ...(reqBody.fullName && { fullName: reqBody.fullName }),
-            ...(reqBody.phone && { phone: reqBody.phone }),
-            ...(reqBody.username && { username: reqBody.username }),
-            ...(reqBody.gender && { gender: reqBody.gender }),
-            ...(reqBody.password && { password: reqBody.password }),
-        };
+        const existingUser = await UserModel.findById(user_id);
+        if (!existingUser) {
+            return {
+                status: "failed",
+                message: "User not found.",
+            };
+        }
 
-        // Fields to be updated in the `UserProfileModel`
-        const profileFields = {
-            ...(reqBody.profilePicture && { profilePicture: reqBody.profilePicture }),
-            ...(reqBody.coverPicture && { coverPicture: reqBody.coverPicture }),
-            ...(reqBody.bio && { bio: reqBody.bio }),
-            ...(reqBody.address && { address: reqBody.address }),
-            ...(reqBody.profession && { profession: reqBody.profession }),
-            ...(reqBody.location && { location: reqBody.location }),
-        };
+        // Password comparison if provided
+        if ("password" in reqBody && reqBody.password) {
+            const isSamePassword = await bcrypt.compare(reqBody.password, existingUser.password);
+            if (isSamePassword) {
+                return {
+                    status: "failed",
+                    message: "Old password and new password are the same.",
+                };
+            }
+        }
 
-        // আগের প্রোফাইল তথ্য খুঁজে বের করা
-        let profileImage = await UserProfileModel.findOne({ userID: user_id });
+        // Construct userFields with even empty strings allowed
+        const userFields = {};
+        if ("fullName" in reqBody) userFields.fullName = reqBody.fullName;
+        if ("phone" in reqBody) userFields.phone = reqBody.phone;
+        if ("username" in reqBody) userFields.username = reqBody.username;
+        if ("gender" in reqBody) userFields.gender = reqBody.gender;
+        if ("password" in reqBody) userFields.password = reqBody.password;
 
-        // যদি নতুন ছবি আসে, তাহলে আপলোড করো
+        // Hash password if it exists
+        if (reqBody.password) {
+            const salt = await bcrypt.genSalt(10);
+            userFields.password = await bcrypt.hash(reqBody.password, salt);
+        }
+
+        // Construct profileFields allowing empty strings
+        const profileFields = {};
+        if ("profilePicture" in reqBody) profileFields.profilePicture = reqBody.profilePicture;
+        if ("coverPicture" in reqBody) profileFields.coverPicture = reqBody.coverPicture;
+        if ("bio" in reqBody) profileFields.bio = reqBody.bio;
+        if ("address" in reqBody) profileFields.address = reqBody.address;
+        if ("profession" in reqBody) profileFields.profession = reqBody.profession;
+        if ("location" in reqBody) profileFields.location = reqBody.location;
+
+        // If image file is provided, upload to Cloudinary
+        const profileImage = await UserProfileModel.findOne({ userID: user_id });
+
         if (file) {
             const uploadResult = await new Promise((resolve, reject) => {
                 cloudinary.uploader.upload_stream(
-                  { folder: "user_photo" },
-                  (error, result) => {
-                      if (error) reject(error);
-                      else resolve(result);
-                  }
+                    { folder: "user_photo" },
+                    (error, result) => {
+                        if (error) reject(error);
+                        else resolve(result);
+                    }
                 ).end(file.data);
             });
 
-            profileFields.profilePicture = uploadResult.secure_url; // নতুন ছবি সেট করো
+            profileFields.profilePicture = uploadResult.secure_url;
 
-            // যদি আগের `profilePicture` থাকে, তাহলে সেটা Cloudinary থেকে ডিলিট করো
+            // Delete old image if exists
             if (profileImage && profileImage.profilePicture) {
                 const publicId = profileImage.profilePicture.split('/').pop().split('.')[0];
                 await cloudinary.uploader.destroy(`user_photo/${publicId}`);
             }
         }
 
-        // ইউজার তথ্য আপডেট করা
+        // If no update fields provided, return early
+        if (
+            Object.keys(userFields).length === 0 &&
+            Object.keys(profileFields).length === 0 &&
+            !file
+        ) {
+            return {
+                status: "failed",
+                message: "No data provided for update.",
+            };
+        }
+
+        // Update user
         const userUpdateResult = await UserModel.updateOne(
-          { _id: user_id },
-          { $set: userFields }
+            { _id: user_id },
+            { $set: userFields }
         );
 
-        // প্রোফাইল তথ্য আপডেট করা
+        // Update or insert profile
         const profileUpdateResult = await UserProfileModel.updateOne(
-          { userID: user_id },
-          { $set: profileFields },
-          { upsert: true } // প্রোফাইল না থাকলে নতুন প্রোফাইল তৈরি করবে
+            { userID: user_id },
+            { $set: profileFields },
+            { upsert: true }
         );
 
-        if (userUpdateResult.nModified === 0 && profileUpdateResult.nModified === 0) {
+        // If nothing was modified, return failed
+        const userModified = userUpdateResult.modifiedCount || userUpdateResult.nModified;
+        const profileModified = profileUpdateResult.modifiedCount || profileUpdateResult.nModified;
+
+        if (!userModified && !profileModified) {
             return {
                 status: "failed",
                 message: "No changes were made to the profile.",
