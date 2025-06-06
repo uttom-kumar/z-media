@@ -14,7 +14,7 @@ const CreateBtnComponent = () => {
 
   return (
     <div>
-      <div className="bg-white p-4 rounded-lg shadow-md w-full ">
+      <div className="bg-white p-5 rounded-lg shadow  w-full ">
         {/* Input Area */}
         {
           profileList===null ? (<div><CreatePostSkeleton /></div>) :

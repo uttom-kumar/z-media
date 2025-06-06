@@ -84,10 +84,10 @@ const PostListLeft = () => {
     <>
       <div>
         <div className="w-full lg:w-[80%] xl:w-[70%] mx-auto">
-          <div className="mb-5">
+          <div className="pb-2">
             <CreateBtnComponent/>
           </div>
-          <div className="py-5">
+          <div className="pt-2 pb-5">
             <StoryComponent />
           </div>
           {

@@ -5,21 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4537776-af3f-4fbf-8756-a126fe160dbe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/component/common/likeButton.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/create-comment-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/create-comment-component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-detail-list.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-detail-list.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/create-post/create-btn-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/create-post/create-btn-component.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-list-left.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-list-left.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-modal/comment-create-modal-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-modal/comment-create-modal-component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-modal/post-modal-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-modal/post-modal-component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/user-profile/settings/setting-modal-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user-profile/settings/setting-modal-component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/user-profile/user-profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user-profile/user-profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/user/login-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user/login-component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/user/register-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user/register-component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/post-list-store.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/post-list-store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/utility/utility.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utility/utility.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/ReactModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/ReactModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/services/ReactService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/services/ReactService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +164,7 @@
       <workItem from="1748070698321" duration="1005000" />
       <workItem from="1748226880859" duration="10953000" />
       <workItem from="1748270453008" duration="84000" />
-      <workItem from="1749224891989" duration="17316000" />
+      <workItem from="1749224891989" duration="18049000" />
     </task>
     <servers />
   </component>
