@@ -223,9 +223,9 @@ const RegisterComponent = () => {
                                         <button
                                           type="button"
                                           onClick={togglePasswordVisibility}
-                                          className="text-gray-600 hover:text-gray-900 focus:outline-none"
+                                          className="text-gray-600 hover:text-gray-900 focus:outline-none cursor-pointer"
                                         >
-                                            {showPass ? <BiSolidShow/> : <BiSolidHide/>}
+                                            {showPass ? <BiSolidHide /> : <BiSolidShow />}
                                         </button>
                                     </div>
                                 </div>
@@ -252,9 +252,9 @@ const RegisterComponent = () => {
                                         <button
                                           type="button"
                                           onClick={togglePassword}
-                                          className="text-gray-600 hover:text-gray-900 focus:outline-none"
+                                          className="text-gray-600 hover:text-gray-900 focus:outline-none cursor-pointer"
                                         >
-                                            {showCPass ? <BiSolidShow/> : <BiSolidHide/>}
+                                            {showCPass ? <BiSolidHide /> : <BiSolidShow/>}
                                         </button>
                                     </div>
                                 </div>

@@ -8,19 +8,27 @@ import toast from "react-hot-toast";
 
 
 const CommentCreateModalComponent = ({comment, blogID}) => {
-  const { BlogListDetailRequest } = BlogPostStore();
+  const {PostListDetail, BlogListDetailRequest } = BlogPostStore();
   const {profileList, profileListRequest} = UserStore()
-  const {commentListDetailsRequest, commentInput, commentOnchange, CreateCommentRequest} = CommentStore()
+  const {CommentListDetail,commentListDetailsRequest, commentInput, commentOnchange, CreateCommentRequest} = CommentStore()
 
 
 
   useEffect(() => {
-    ( async () => {
-      await BlogListDetailRequest(blogID);
-      await profileListRequest()
-      await commentListDetailsRequest(blogID)
-    })();
-  }, [blogID]);
+    if(!PostListDetail || !profileList || !CommentListDetail){
+      ( async () => {
+        if(!PostListDetail){
+          await BlogListDetailRequest(blogID);
+        }
+        if(!profileList){
+          await profileListRequest()
+        }
+        if(!CommentListDetail){
+          await commentListDetailsRequest(blogID)
+        }
+      })();
+    }
+  }, [blogID, PostListDetail, profileList, CommentListDetail, BlogListDetailRequest, profileListRequest, commentListDetailsRequest]);
 
   const CreateCommentHandler = async (blogID) => {
     let res = await CreateCommentRequest({...commentInput, blogID})

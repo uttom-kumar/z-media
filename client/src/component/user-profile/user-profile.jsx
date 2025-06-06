@@ -22,11 +22,18 @@ const UserProfile = () => {
 
 
   useEffect(() => {
-    (async () => {
-      await profileListRequest();
-      await UserByBlogPostListRequest();
-    })();
-  }, []);
+    if(!profileList || !UserByBlogPostList){
+      (async () => {
+        if(!profileList){
+          await profileListRequest();
+        }
+        if(!UserByBlogPostList){
+          await UserByBlogPostListRequest();
+        }
+      })();
+    }
+
+  }, [UserByBlogPostList, UserByBlogPostListRequest, profileList, profileListRequest]);
 
   const tabs = [
     { name: "Posts", },

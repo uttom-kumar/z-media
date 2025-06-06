@@ -17,33 +17,18 @@ import {FaComment, FaRegComment} from "react-icons/fa";
 import ReactionStore from "../../store/reaction-store.js";
 import LikeShowUser from "./like_by_user/like-show-user.jsx";
 import {id} from "date-fns/locale";
+import LikeButton from "../common/likeButton.jsx";
 
 const PostDetailList = () => {
-  const { PostListDetail, BlogListDetailRequest, blogPostReadRequest } = BlogPostStore();
+  const { PostListDetail, BlogListDetailRequest} = BlogPostStore();
   const {profileList, profileListRequest} = UserStore()
   const {CommentListDetail, commentListDetailsRequest, deleteCommentRequest, commentUpdateInput, commentUpdateOnchange, singleCommentRequest,
     updateCommentRequest, } = CommentStore()
-  const {CreateLikeRequest,ReactionListRequest} = ReactionStore()
   const { blogID } = useParams()
   const [isEditing, setIsEditing] = useState(false);
 
 
   const [isExpanded, setIsExpanded] = useState(false);
-
-
-  const likeHandler = async (id) => {
-    let response = await CreateLikeRequest(id)
-    if(response['status']==="success"){
-      await blogPostReadRequest()
-      await ReactionListRequest(blogID)
-      toast.success('liked successfully')
-    }
-    if(response['status']==='unlike'){
-      await blogPostReadRequest()
-      await ReactionListRequest(blogID)
-      toast.success('unlike successfully')
-    }
-  }
 
   const handleEditClick = async (commentId) => {
     setIsEditing(commentId);
@@ -107,12 +92,19 @@ const PostDetailList = () => {
 
 
   useEffect(() => {
+    if(PostListDetail===null || profileList=== null || CommentListDetail === null)
     (async () => {
-      await BlogListDetailRequest(blogID);
-      await profileListRequest()
-      await commentListDetailsRequest(blogID)
+      if(PostListDetail === null ){
+        await BlogListDetailRequest(blogID);
+      }
+      if(profileList === null ){
+        await profileListRequest()
+      }
+      if(CommentListDetail === null){
+        await commentListDetailsRequest(blogID)
+      }
     })();
-  }, [blogID]);
+  }, [blogID, PostListDetail, profileList, CommentListDetail, BlogListDetailRequest, profileListRequest, commentListDetailsRequest]);
 
 
 
@@ -202,7 +194,9 @@ const PostDetailList = () => {
             <div>Loading...</div>
           ) : (
             PostListDetail.map((item, i) => {
+              const alreadyLiked = !!item?.react[0]?.likeByUserID?.find((like) => like.userID === item?.user._id)?.liked;
               const formattedDate = format(new Date(item.createdAt), "dd MMM, yyyy 'at' h:mm a")
+
               return (
                 <div key={i} className="p-5">
                   <div className="flex gap-1 items-start">
@@ -249,9 +243,11 @@ const PostDetailList = () => {
                   </div>
                   {/*--------like comment button all ----------*/}
                   <div className="border-t border-t-gray-400 py-2 px-5  flex justify-between items-center">
-                    <button className="cursor-pointer" onClick={()=>likeHandler(blogID)}>
-                      <AiOutlineLike className="text-[24px]" />
-                    </button>
+                    <LikeButton
+                        postId={item?._id}
+                        initialLiked={alreadyLiked}
+                        initialCount={item?.react[0]?.like ?? 0}
+                    />
                     <button className="cursor-pointer">
                       <label htmlFor="comment">
                         <FaRegComment className="text-[24px] cursor-pointer" />
@@ -337,7 +333,7 @@ const PostDetailList = () => {
                                     <div key={i} className="flex items-center gap-3 mt-1">
                                       {
                                         profile?._id === comment?.userID && (
-                                          <button className="text-red-600 font-semibold hover:underline"
+                                          <button className="text-red-600 font-semibold hover:underline cursor-pointer"
                                                   onClick={() => CommentDeleteHandler(comment?.blogID, comment?._id)}
                                           >
                                             Delete
@@ -349,21 +345,21 @@ const PostDetailList = () => {
                                           {!isEditing || isEditing !== comment?._id ? (
                                             <button
                                               onClick={() => handleEditClick(comment?._id)}
-                                              className="text-blue-600 font-semibold hover:underline"
+                                              className="text-blue-600 font-semibold hover:underline cursor-pointer"
                                             >
                                               Edit
                                             </button>
                                           ) : (
                                             <button
                                               onClick={()=>handleSaveClick(comment?._id)}
-                                              className="text-green-600 font-semibold hover:underline"
+                                              className="text-green-600 font-semibold hover:underline cursor-pointer"
                                             >
                                               Save
                                             </button>
                                           )}
                                         </div>
                                       )}
-                                      <button className="text-gray-700 font-semibold hover:underline">Hide</button>
+                                      <button className="text-gray-700 font-semibold hover:underline cursor-pointer">Hide</button>
                                     </div>
                                   )
                                 })

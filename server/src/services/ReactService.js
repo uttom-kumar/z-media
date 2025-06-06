@@ -2,42 +2,47 @@ import {ReactModel} from "../models/ReactModel.js";
 import mongoose from "mongoose";
 
 
+
 export const CreateLikeService = async (req) => {
     try {
-        const userID = req.headers.user_id; // Get user ID (consider using token for better security)
+        const userID = req.headers.user_id;
         const { blogID } = req.body;
 
-        // Validate input
         if (!userID || !blogID) {
-            return { status: "error", message: "User ID and Blog ID are required." };
+            return { status: "failed", message: "User ID & Blog ID required" };
         }
 
-        // Find or create a React document for the blog
-        let react = await ReactModel.findOne({ blogID });
-        if (!react) {
-            react = new ReactModel({ blogID, like: 0, dislike: 0, likeByUserID: [] });
-        }
+        // ১) চেষ্টা করি আনলাইক করতে (যদি আগে লাইক করে থাকে) —— atomic pull
+        const pullRes = await ReactModel.updateOne(
+            { blogID, "likeByUserID.userID": userID },
+            {
+                $pull: { likeByUserID: { userID } },
+                $inc: { like: -1 },
+            }
+        );
 
-        // Check if the user has already liked the blog
-        const userLiked = react.likeByUserID.some((entry) => entry.userID.toString() === userID);
-
-        if (userLiked) {
-            // If already liked, "unlike" the blog
-            react.likeByUserID = react.likeByUserID.filter((entry) => entry.userID.toString() !== userID);
-            react.like = Math.max(0, react.like - 1); // Decrease like count, ensuring it doesn't go below 0
-            await react.save(); // Save the updated react document
+        if (pullRes.modifiedCount) {
             return { status: "unlike", message: "Blog unliked successfully!" };
-        } else {
-            // If not liked, "like" the blog
-            react.likeByUserID.push({ userID });
-            react.like += 1; // Increase like count
-            await react.save(); // Save the updated react document
-            return { status: "success", message: "Blog liked successfully!" };
         }
+
+        // ২) এখানে আসা মানে আগে লাইক করা ছিল না → এখন লাইক করি
+        await ReactModel.updateOne(
+            { blogID },
+            {
+                $addToSet: { likeByUserID: { userID, liked: true } }, // ডুপ্লিকেট আটকাবে
+                $inc: { like: 1 },
+            },
+            { upsert: true }
+        );
+
+        return { status: "success", message: "Blog liked successfully!" };
     } catch (err) {
-        return { status: "error", message: err.message };
+        // unique index collision হলে err.code === 11000
+        return { status: "failed", message: err.message };
     }
 };
+
+
 
 
 export const ReactionReadService = async (req) => {

@@ -6,6 +6,7 @@ const BaseURL = import.meta.env.VITE_BASE_URI;
 
 const BlogPostStore = create((set) => ({
     blogPostRead: null,
+
     blogPostReadRequest: async () => {
         let url = `${BaseURL}/ReadBlogPost`;
         let res = await axios.get(url,{withCredentials: true});

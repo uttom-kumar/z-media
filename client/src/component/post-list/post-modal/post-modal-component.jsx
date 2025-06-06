@@ -3,20 +3,17 @@ import PostListStore from "../../../store/post-list-store.js";
 import {format} from "date-fns";
 import {Link} from "react-router-dom";
 import UserStore from "../../../store/user-store.js";
-import CreateCommentComponent from "../create-comment-component.jsx";
 import LikeShowUser from "../like_by_user/like-show-user.jsx";
 import {FaComment, FaRegComment} from "react-icons/fa";
 import CommentStore from "../../../store/comment-store.js";
-import {AiOutlineLike} from "react-icons/ai";
 import {IoMdShareAlt} from "react-icons/io";
 import toast from "react-hot-toast";
-import ReactionStore from "../../../store/reaction-store.js";
 import CommentCreateModalComponent from "./comment-create-modal-component.jsx";
 import {formatBlogPostDate, profileUrl} from "../../../utility/utility.js";
+import LikeButton from "../../common/likeButton.jsx";
 
 const PostModalComponent = ({onClose,postID}) => {
-  const{PostListDetail, BlogListDetailRequest, blogPostReadRequest} = PostListStore()
-  const {CreateLikeRequest, ReactionListRequest} = ReactionStore()
+  const{PostListDetail, BlogListDetailRequest} = PostListStore()
   const {CommentListDetail, deleteCommentRequest, commentListDetailsRequest,commentUpdateInput, commentUpdateOnchange, singleCommentRequest,
     updateCommentRequest,} = CommentStore()
   const{profileList}= UserStore()
@@ -24,22 +21,6 @@ const PostModalComponent = ({onClose,postID}) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
-
-
-
-  const likeHandler = async (id) => {
-    let response = await CreateLikeRequest(id)
-    if(response['status']==="success"){
-      await blogPostReadRequest()
-      await ReactionListRequest(postID)
-      toast.success('liked successfully')
-    }
-    if(response['status']==='unlike'){
-      await blogPostReadRequest()
-      await ReactionListRequest(postID)
-      toast.success('unlike successfully')
-    }
-  }
 
   const handleEditClick = async (commentId) => {
     setIsEditing(commentId);
@@ -94,13 +75,16 @@ const PostModalComponent = ({onClose,postID}) => {
     }
   };
 
-
-
   useEffect(() => {
-    (async () => {
-      await BlogListDetailRequest(postID)
-    })()
-  }, [postID]);
+    if(!PostListDetail){
+      (async () => {
+        if (!PostListDetail) {
+          await BlogListDetailRequest(postID);
+        }
+      })();
+    }
+  }, [postID, PostListDetail, BlogListDetailRequest]);
+
 
   return (
     <div>
@@ -108,6 +92,7 @@ const PostModalComponent = ({onClose,postID}) => {
         <div>
           {
             PostListDetail===null ? (<div>Loading....</div>) : PostListDetail?.map((item, i)=>{
+              const alreadyLiked = !!item?.react[0]?.likeByUserID?.find((like) => like.userID === item?.user._id)?.liked;
               const formattedDate = format(new Date(item.createdAt), "dd MMM, yyyy 'at' h:mm a");
               return (
                 <div key={i}>
@@ -157,9 +142,11 @@ const PostModalComponent = ({onClose,postID}) => {
                   <div>
                     <div
                       className="border-t border-t-gray-400 py-2 px-5  flex justify-between items-center mx-2 ">
-                      <button className="cursor-pointer" onClick={() => likeHandler(postID)}>
-                        <AiOutlineLike className="text-[24px]"/>
-                      </button>
+                      <LikeButton
+                          postId={item?._id}
+                          initialLiked={alreadyLiked}
+                          initialCount={item?.react[0]?.like ?? 0}
+                      />
                       <button className="">
                         <label htmlFor="comment">
                           <FaRegComment className="text-[24px] cursor-pointer"/>

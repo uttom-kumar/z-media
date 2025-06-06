@@ -34,7 +34,7 @@ const LoginComponent = () => {
             const res = await loginRequest(loginInput);
             if (res.status === "success") {
                 setLoading(false)
-                Cookies.set('isUserLoggedIn', 'true')
+                localStorage.setItem("isUserLoggedIn", 'true')
                 loginOnchange("email", "");
                 loginOnchange("password", "");
                 navigate('/')
@@ -132,7 +132,7 @@ const LoginComponent = () => {
                                             onClick={togglePasswordVisibility}
                                             className="text-gray-600 hover:text-gray-900 focus:outline-none cursor-pointer"
                                         >
-                                            {showPass ? <BiSolidShow/> : <BiSolidHide/>}
+                                            {showPass ? <BiSolidHide /> : <BiSolidShow />}
                                         </button>
                                     </div>
                                 </div>
@@ -166,19 +166,6 @@ const LoginComponent = () => {
                             </form>
                             <div className="text-center mt-5">
                                 <Link className="text-blue-500 text-[14px] hover:underline" to={`/recover-email`}>forgotten password?</Link>
-                            </div>
-                            <div className="my-5">
-                                <div className="flex gap-5 text-gray-500 items-center justify-between">
-                                    <hr className="w-full border border-gray-300"/>
-                                    <p>or</p>
-                                    <hr className="w-full border border-gray-300"/>
-                                </div>
-                                <div className="mt-5 text-center ">
-                                    <button
-                                        className=" cursor-pointer my-3 mx-auto flex items-center gap-2  border border-gray-500 px-5 py-2 shadow-md rounded">
-                                        <FcGoogle/> log in with gmail
-                                    </button>
-                                </div>
                             </div>
                         </div>
                         <div className="my-5 p-5 rounded border border-gray-500 ">

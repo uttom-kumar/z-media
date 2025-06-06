@@ -16,6 +16,7 @@ import PostListSkeleton from "../../skeleton/post-list-skeleton.jsx";
 import StoryComponent from "../Story/story-component.jsx";
 import ModalComponent from "../modal/modal-component.jsx";
 import PostModalComponent from "./post-modal/post-modal-component.jsx";
+import LikeButton from "../common/likeButton.jsx";
 
 
 
@@ -25,26 +26,9 @@ const PostListLeft = () => {
   const {CreateLikeRequest} =ReactionStore()
   const [showComment, setShowComment] = useState(false)
   const dropdownRef = useRef(null);
-  // const [isLike, setIsLike] = useState(false)
 
   const [showModalBtn, setShowModalBtn] = useState(false)
   const [showModal, setShowModal] = useState(false)
-
-
-
-  const AddLikeHandler = async (id) => {
-    let response = await CreateLikeRequest(id)
-
-    if(response['status']==="success"){
-      await blogPostReadRequest()
-      toast.success('liked successfully')
-    }
-    if(response['status']==='unlike'){
-      await blogPostReadRequest()
-      toast.success('unlike successfully')
-    }
-  }
-
 
   const handleShare = async (id) => {
     const url = location + "blogDetails/" + id
@@ -71,11 +55,18 @@ const PostListLeft = () => {
 
 
   useEffect(() => {
-    (async () => {
-      await blogPostReadRequest()
-      await profileListRequest()
-    })();
-  }, []);
+    if (blogPostRead === null || profileList === null) {
+      (async () => {
+        if (blogPostRead === null) {
+          await blogPostReadRequest();
+        }
+        if (profileList === null) {
+          await profileListRequest();
+        }
+      })();
+    }
+  }, [blogPostRead, blogPostReadRequest, profileList, profileListRequest]);
+
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -103,6 +94,8 @@ const PostListLeft = () => {
             blogPostRead === null ? <div><PostListSkeleton /></div> :
               blogPostRead?.slice()?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))?.map((post, i) => {
                 const formattedDate = format(new Date(post.createdAt), "dd MMM, yyyy 'at' h:mm a");
+                /* ------------ is the current user already liking this post? ------------ */
+                const alreadyLiked = !!post?.react?.likeByUserID?.find((like) => like.userID === post?.user._id)?.liked;
                 return (
                   <div key={i} className={`bg-white mb-10 p-5 md:p-10 rounded-lg border border-gray-200  shadow animate-fade-in 
                   ${post}
@@ -224,11 +217,11 @@ const PostListLeft = () => {
 
                     </div>
                     <div className="flex  border-t border-t-gray-400 py-2 px-3 justify-between items-center gap-3">
-                      <button className={`text-[24px] flex gap-2 items-center cursor-pointer`}
-                              onClick={() => AddLikeHandler(post?._id)}
-                      >
-                        <AiOutlineLike /><span className="text-[16px] font-semibold">{post?.react?.like} likes</span>
-                      </button>
+                      <LikeButton
+                        postId={post?._id}
+                        initialLiked={alreadyLiked}
+                        initialCount={post?.react?.like ?? 0}
+                      />
                       <button className="text-[24px] cursor-pointer"
                               onClick={() => setShowComment(post?._id)}
                       >

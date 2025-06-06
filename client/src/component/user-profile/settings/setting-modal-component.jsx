@@ -20,11 +20,11 @@ const SettingModalComponent = ({onClose}) => {
   return (
     <div className="z-[999999999999">
       <ul className="flex flex-col text-center">
-        <li className="">
-          <Link to={`/profile/qr-code`} target={"_blank"} className="block w-full py-5 hover:bg-gray-100 duration-500 border-b border-gray-300">
-            OR code
-          </Link>
-        </li>
+        {/*<li className="">*/}
+        {/*  <Link to={`/profile/qr-code`} target={"_blank"} className="block w-full py-5 hover:bg-gray-100 duration-500 border-b border-gray-300">*/}
+        {/*    OR code*/}
+        {/*  </Link>*/}
+        {/*</li>*/}
         <li className="">
           <Link to={'/'} className="block w-full py-5 hover:bg-gray-200 duration-500  border-b border-gray-300">
             Setting and privacy
@@ -35,11 +35,11 @@ const SettingModalComponent = ({onClose}) => {
             Update Profile
           </Link>
         </li>
-        <li className="">
-          <Link to={'/'} className="block w-full py-5 hover:bg-gray-200 duration-500  border-b border-gray-300">
-            Meta Verification
-          </Link>
-        </li>
+        {/*<li className="">*/}
+        {/*  <Link to={'/'} className="block w-full py-5 hover:bg-gray-200 duration-500  border-b border-gray-300">*/}
+        {/*    Meta Verification*/}
+        {/*  </Link>*/}
+        {/*</li>*/}
         <li className="">
           <Link to={'/'} className="block w-full py-5 hover:bg-gray-200 duration-500  border-b border-gray-300">
             Login activity
