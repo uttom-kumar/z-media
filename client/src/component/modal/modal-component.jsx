@@ -45,7 +45,7 @@ const ModalComponent = ({ isVisible, onClose, children }) => {
                 {/* Close Button */}
                 <button
                     onClick={onClose}
-                    className="absolute cursor-pointer top-3 right-3 z-[999] w-9 h-9 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition"
+                    className="absolute curs top-3 right-3 z-[999] w-9 h-9 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition"
                     aria-label="Close modal"
                 >
                     <IoCloseSharp className="text-xl text-gray-700 hover:text-gray-900 transition" />

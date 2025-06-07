@@ -92,19 +92,13 @@ const PostDetailList = () => {
 
 
   useEffect(() => {
-    if(PostListDetail===null || profileList=== null || CommentListDetail === null)
     (async () => {
-      if(PostListDetail === null ){
-        await BlogListDetailRequest(blogID);
-      }
-      if(profileList === null ){
-        await profileListRequest()
-      }
-      if(CommentListDetail === null){
-        await commentListDetailsRequest(blogID)
-      }
+      await BlogListDetailRequest(blogID);
+      await profileListRequest()
+      await commentListDetailsRequest(blogID)
     })();
-  }, [blogID, PostListDetail, profileList, CommentListDetail, BlogListDetailRequest, profileListRequest, commentListDetailsRequest]);
+
+  }, [BlogListDetailRequest, blogID, commentListDetailsRequest, profileListRequest]);
 
 
 

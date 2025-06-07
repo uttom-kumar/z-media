@@ -42,7 +42,7 @@ const AppNavbar = () => {
                     >
                         {({isActive}) => (
                             <>
-                                {isActive ? <IoHomeSharp/> : <IoHomeOutline/>}
+                                {isActive ? <IoHomeSharp className='text-[32px] lg:text-[24px]'/> : <IoHomeOutline className='text-[32px] lg:text-[24px]'/>}
                                 <span className="hidden lg:block">Home</span>
                             </>
                         )}
@@ -59,7 +59,7 @@ const AppNavbar = () => {
                     >
                         {({isActive}) => (
                             <>
-                                {isActive ? <FaSearch /> : <GoSearch />}
+                                {isActive ? <FaSearch className='text-[32px] lg:text-[24px]' /> : <GoSearch className='text-[32px] lg:text-[24px]' />}
                                 <span className="hidden lg:block">Search</span>
                             </>
                         )}
@@ -77,7 +77,7 @@ const AppNavbar = () => {
                         >
                             {({isActive}) => (
                                 <>
-                                    {isActive ? <FaUserFriends/> : <LiaUserFriendsSolid/>}
+                                    {isActive ? <FaUserFriends className='text-[32px] lg:text-[24px]'/> : <LiaUserFriendsSolid className='text-[32px] lg:text-[24px]'/>}
                                     <span className="hidden lg:block">Friends</span>
                                 </>
                             )}
@@ -93,7 +93,7 @@ const AppNavbar = () => {
                         type="button"
                         className="text-[18px] w-full flex items-center rounded gap-1 px-2 py-3 hover:bg-gray-100 cursor-pointer"
                     >
-                        <FiPlusSquare/>
+                        <FiPlusSquare className='text-[32px] lg:text-[24px]'/>
                         <span className="hidden lg:block">Create</span>
                     </button>
                 </li>
@@ -107,7 +107,7 @@ const AppNavbar = () => {
                         >
                             {({isActive}) => (
                                 <>
-                                    {isActive ? <RiGroup2Fill/> : <RiGroup2Fill/>}
+                                    {isActive ? <RiGroup2Fill className='text-[32px] lg:text-[24px]'/> : <RiGroup2Fill className='text-[32px] lg:text-[24px]'/>}
                                     <span className="hidden lg:block">Group</span>
                                 </>
                             )}
@@ -126,7 +126,7 @@ const AppNavbar = () => {
                     >
                         {({isActive}) => (
                             <>
-                                {isActive ? <BsMessenger/> : <PiMessengerLogo/>}
+                                {isActive ? <BsMessenger className='text-[32px] lg:text-[24px]'/> : <PiMessengerLogo className='text-[32px] lg:text-[24px]'/>}
                                 <span className="hidden lg:block">Messages</span>
                             </>
                         )}
@@ -143,7 +143,7 @@ const AppNavbar = () => {
                     >
                         {({isActive}) => (
                             <>
-                                {isActive ? <IoMdNotifications/> : <IoMdNotificationsOutline/>}
+                                {isActive ? <IoMdNotifications className='text-[32px] lg:text-[24px]'/> : <IoMdNotificationsOutline className='text-[32px] lg:text-[24px]'/>}
                                 <span className="hidden lg:block">Notifications</span>
                             </>
                         )}
