@@ -6,8 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="d4537776-af3f-4fbf-8756-a126fe160dbe" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/create-post/create-btn-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/create-post/create-btn-component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-list-left.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-list-left.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/modal/create-post-modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/modal/create-post-modal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/modal/modal-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/modal/modal-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-modal/post-modal-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-modal/post-modal-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/user-profile/settings/setting-modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user-profile/settings/setting-modal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/user/login-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user/login-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/user/otp-confirm-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user/otp-confirm-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/user/recover-email-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user/recover-email-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/user/register-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user/register-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/user/reset-password-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user/reset-password-component.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,22 +44,22 @@
     <option name="openDirectoriesWithSingleClick" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/uttom/Desktop/z-media/client/src/page/group",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.rainbow.brackets.disable.when",
-    "ts.external.directory.path": "/snap/webstorm/479/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/uttom/Desktop/z-media/client/src/page/group&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.rainbow.brackets.disable.when&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/snap/webstorm/479/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/client/src/page/group" />
@@ -165,6 +172,7 @@
       <workItem from="1748226880859" duration="10953000" />
       <workItem from="1748270453008" duration="84000" />
       <workItem from="1749224891989" duration="18049000" />
+      <workItem from="1749267324204" duration="3481000" />
     </task>
     <servers />
   </component>
@@ -180,7 +188,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/client/src/component/post-list/post-list-left.jsx</url>
           <line>219</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

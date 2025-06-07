@@ -1,47 +1,90 @@
-import { useEffect } from 'react';
-import {IoCloseSharp} from "react-icons/io5";
+import { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
+import { IoCloseSharp } from 'react-icons/io5';
 
-const SettingModal = ({ isVisible, onClose, children }) => {
+/* --- focus-trap helper ---------------------------------------------- */
+const useFocusTrap = (isActive, containerRef) => {
+  useEffect(() => {
+    if (!isActive || !containerRef.current) return;
 
-  // Disable background scrolling when modal is visible
+    const focusableSelectors =
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    const nodes = containerRef.current.querySelectorAll(focusableSelectors);
+    if (!nodes.length) return;
+
+    const first = nodes[0];
+    const last = nodes[nodes.length - 1];
+
+    const handleTab = e => {
+      if (e.key !== 'Tab') return;
+      if (e.shiftKey ? document.activeElement === first : document.activeElement === last) {
+        e.preventDefault();
+        (e.shiftKey ? last : first).focus();
+      }
+    };
+
+    first.focus();
+    document.addEventListener('keydown', handleTab);
+    return () => document.removeEventListener('keydown', handleTab);
+  }, [isActive, containerRef]);
+};
+
+/* --- modal component ------------------------------------------------- */
+// eslint-disable-next-line react/prop-types
+const SettingModal = ({isVisible, onClose, children, maxWidth = 'md:max-w-lg'}) => {
+  const wrapperRef = useRef(null);
+
+  // Disable background scroll while open
   useEffect(() => {
     if (isVisible) {
-      // Disable scroll
+      const { overflow } = document.body.style;
       document.body.style.overflow = 'hidden';
-    } else {
-      // Enable scroll
-      document.body.style.overflow = 'auto';
+      return () => {
+        document.body.style.overflow = overflow;
+      };
     }
-    // Cleanup when modal is unmounted or isVisible changes
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
   }, [isVisible]);
 
-  const handleClose = (e) => {
-    if (e.target.id === 'wrapper') onClose();
-  };
+  // Close on click outside or Escape
+  useEffect(() => {
+    if (!isVisible) return;
+    const onKey = e => e.key === 'Escape' && onClose();
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [isVisible, onClose]);
+
+  useFocusTrap(isVisible, wrapperRef);
 
   if (!isVisible) return null;
 
-  return (
-    <div>
+  return createPortal(
       <div
-        className="fixed inset-0 bg-black/65 flex flex-col justify-center items-center animate-fade-in z-[1000]"
-        id="wrapper"
-        onClick={handleClose}
+          className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/60 backdrop-blur-sm"
+          aria-modal="true"
+          role="dialog"
+          onMouseDown={e => e.target === e.currentTarget && onClose()}
       >
-        <div className="absolute top-[60px] right-[10px] lg:top-[40px] md:right-[40px] z-[999999]">
-          <button onClick={() => onClose()} className="cursor-pointer">
-            <IoCloseSharp className="text-[50px] text-gray-400 hover:text-gray-200 duration-500" />
-          </button>
-        </div>
-        {/* Modal content */}
-        <div className="w-[90%] md:w-[400px] bg-white rounded overflow-hidden z-[99999] ">
+        {/* close button */}
+        <button
+            onClick={onClose}
+            className="absolute top-4 right-4 text-gray-300 hover:text-white transition focus:outline-none"
+            aria-label="Close modal"
+        >
+          <IoCloseSharp size={36} />
+        </button>
+
+        {/* panel */}
+        <div
+            ref={wrapperRef}
+            className={`w-[90%] ${maxWidth} rounded-lg bg-white shadow-2xl overflow-hidden
+        transform transition-all duration-300 ease-out
+        animate-modal-enter
+        `}
+        >
           {children}
         </div>
-      </div>
-    </div>
+      </div>,
+      document.body, // portal target
   );
 };
 

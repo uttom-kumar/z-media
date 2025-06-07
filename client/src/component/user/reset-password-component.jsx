@@ -3,8 +3,12 @@ import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 import toast from "react-hot-toast";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import userStore from "../../store/user-store.js";
+import CustomLoadingButton from "../LoadingButton/CustomLoadingButton.jsx";
+const BaseURL = import.meta.env.VITE_BASE_URI;
 
 const ResetPasswordComponent = () => {
+  const {isLoading, setLoading} = userStore()
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [password, setPassword] = useState("");
@@ -49,8 +53,10 @@ const ResetPasswordComponent = () => {
     }
 
     try{
-      let res = await axios.post("/api/ResetPassword",{email, otp, password})
+      setLoading(true);
+      let res = await axios.post(`${BaseURL}/ResetPassword`,{email, otp, password})
       if(res.data.status==="success"){
+        setLoading(false);
         navigate("/login")
         sessionStorage.removeItem("email")
         sessionStorage.removeItem("otp")
@@ -58,6 +64,7 @@ const ResetPasswordComponent = () => {
       }
     }
     catch(err){
+      setLoading(false);
       toast.error("Something went wrong");
     }
 
@@ -113,7 +120,12 @@ const ResetPasswordComponent = () => {
         <p className="text-red-500 text-sm mt-2">{error}</p>
 
         <div className="text-center">
-          <button type="submit" className="mt-3 w-full text-white p-2 rounded cursor-pointer font-semibold text-xl bg-green-600">Submit</button>
+          <CustomLoadingButton
+              text={'Reset Password'}
+              onClick={handleSubmit}
+              isLoading={isLoading}
+              type={'submit'}
+          />
         </div>
       </form>
     </div>

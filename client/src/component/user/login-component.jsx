@@ -159,7 +159,7 @@ const LoginComponent = () => {
                                     <CustomLoadingButton
                                         text='login'
                                         onClick={submitHandler}
-                                        disabled={isLoading}
+                                        isLoading={isLoading}
                                         type={'submit'}
                                     />
                                 </div>

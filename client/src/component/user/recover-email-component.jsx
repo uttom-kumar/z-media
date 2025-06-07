@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
+import userStore from "../../store/user-store.js";
+import CustomLoadingButton from "../LoadingButton/CustomLoadingButton.jsx";
+const BaseURL = import.meta.env.VITE_BASE_URI;
 
 const RecoverEmailComponent = () => {
+  const {isLoading, setLoading} = userStore()
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
@@ -18,15 +22,19 @@ const RecoverEmailComponent = () => {
       return;
     }
     try {
-      let res = await axios.get(`/api/RecoverEmailVerify/${email}`)
+      setLoading(true);
+      let res = await axios.get(`${BaseURL}/RecoverEmailVerify/${email}`)
       if (res.data.status === "success") {
+        setLoading(false);
         sessionStorage.setItem("email", email);
         navigate("/sent-otp");
         toast.success("Check your email for the verification code.");
       } else {
+        setLoading(false);
         setError(res?.data?.message || "User not found");
       }
     } catch (err) {
+      setLoading(false);
       setError("Something went wrong. Please try again.");
       toast.error("Something went wrong");
     }
@@ -53,12 +61,12 @@ const RecoverEmailComponent = () => {
           placeholder="Enter your email address"
           className="w-full p-2 border border-gray-300 rounded mb-4 outline-none focus:border-blue-400"
         />
-        <button
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white p-2 rounded cursor-pointer transition duration-300"
-          onClick={SearchHandler}
-        >
-          Send Verification Code
-        </button>
+        <CustomLoadingButton
+            text={'Send Verification Code'}
+            onClick={SearchHandler}
+            isLoading={isLoading}
+            type={'button'}
+        />
       </div>
     </div>
   );

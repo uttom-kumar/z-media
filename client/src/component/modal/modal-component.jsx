@@ -1,48 +1,60 @@
-import React, {useEffect} from 'react';
-import {IoCloseSharp} from "react-icons/io5";
+import React, { useEffect, useRef } from 'react';
+import { IoCloseSharp } from 'react-icons/io5';
 
 const ModalComponent = ({ isVisible, onClose, children }) => {
+    const modalRef = useRef(null);
 
+    // Scroll lock on open
     useEffect(() => {
         if (isVisible) {
-            // Disable scroll
+            const originalOverflow = document.body.style.overflow;
             document.body.style.overflow = 'hidden';
-        } else {
-            // Enable scroll
-            document.body.style.overflow = 'auto';
+            return () => {
+                document.body.style.overflow = originalOverflow;
+            };
         }
-        // Cleanup when modal is unmounted or isVisible changes
-        return () => {
-            document.body.style.overflow = 'auto';
-        };
     }, [isVisible]);
 
-    const handleClose = (e) => {
-        if (e.target.id === 'wrapper') onClose();
+    // ESC to close
+    useEffect(() => {
+        if (!isVisible) return;
+        const handleKey = (e) => {
+            if (e.key === 'Escape') onClose();
+        };
+        window.addEventListener('keydown', handleKey);
+        return () => window.removeEventListener('keydown', handleKey);
+    }, [isVisible, onClose]);
+
+    // Click outside to close
+    const handleBackdropClick = (e) => {
+        if (e.target.id === 'backdrop') onClose();
     };
 
     if (!isVisible) return null;
 
-
     return (
-      <div>
-          <div
-            className="fixed inset-0 flex flex-col justify-center items-center z-50"
-            id="wrapper"
-            onClick={handleClose}
-            style={{background:"rgba(0, 0, 0, 0.1)"}}
-          >
-              <div
-                className="p-5 h-auto rounded relative z-[99999]">
-                  {children}
-                  <div className="absolute top-[25px] right-[40px] z-[999999] w-[35px] h-[35px] rounded-full bg-gray-300 flex flex-col justify-center items-center">
-                      <button className="cursor-pointer" onClick={() => onClose()}>
-                          <IoCloseSharp className="text-[30px] text-gray-800 hover:text-gray-500 duration-500"/>
-                      </button>
-                  </div>
-              </div>
-          </div>
-      </div>
+        <div
+            id="backdrop"
+            onClick={handleBackdropClick}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+        >
+            <div
+                ref={modalRef}
+                className="relative bg-white rounded-lg shadow-2xl p-6 w-[90%] sm:w-[80%] md:w-[60%] lg:w-[40%] max-h-[90vh] overflow-y-auto animate-fade-in"
+            >
+                {/* Close Button */}
+                <button
+                    onClick={onClose}
+                    className="absolute cursor-pointer top-3 right-3 z-[999] w-9 h-9 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition"
+                    aria-label="Close modal"
+                >
+                    <IoCloseSharp className="text-xl text-gray-700 hover:text-gray-900 transition" />
+                </button>
+
+                {/* Modal Content */}
+                {children}
+            </div>
+        </div>
     );
 };
 

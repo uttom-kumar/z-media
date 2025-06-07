@@ -264,7 +264,7 @@ const RegisterComponent = () => {
                                     <CustomLoadingButton
                                         text='Create Account'
                                         onClick={submitHandler}
-                                        disabled={isLoading}
+                                        isLoading={isLoading}
                                         type={'submit'}
                                     />
                                 </div>

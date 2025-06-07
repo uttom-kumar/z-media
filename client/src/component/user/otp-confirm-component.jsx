@@ -3,8 +3,12 @@ import ReactCodeInput from "react-code-input";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import CustomLoadingButton from "../LoadingButton/CustomLoadingButton.jsx";
+import userStore from "../../store/user-store.js";
+const BaseURL = import.meta.env.VITE_BASE_URI;
 
 const OtpConfirmComponent = () => {
+  const {isLoading, setLoading} = userStore()
   const navigate = useNavigate();
   const [otp, setOtp] = useState("")
   const [error, setError] = useState("");
@@ -22,14 +26,17 @@ const OtpConfirmComponent = () => {
       return setError("Please enter a valid 6-digit OTP.");
     }
     try{
-      const res = await axios.post("/api/RecoverVerifyOtp",{ email, otp });
+      setLoading(true)
+      const res = await axios.post(`${BaseURL}/RecoverVerifyOtp`,{ email, otp });
       if(res.data.status === "success"){
+        setLoading(false)
         sessionStorage.setItem("otp",otp)
         navigate("/reset-password")
         toast.success("Verification Successfully");
       }
     }
     catch(err){
+      setLoading(false)
       toast.error("Otp could not be recovered");
     }
   }
@@ -54,7 +61,12 @@ const OtpConfirmComponent = () => {
           </div>
           <p className="text-[14px] text-red-600">{error}</p>
           <div className="text-center">
-            <button type="submit" className="mt-3 w-full text-white p-2 rounded cursor-pointer font-semibold text-xl bg-green-600">Submit</button>
+            <CustomLoadingButton
+              text={'Submit'}
+              onClick={SubmitButton}
+              isLoading={isLoading}
+              type={'submit'}
+            />
           </div>
         </form>
       </div>
