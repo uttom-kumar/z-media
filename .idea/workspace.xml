@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d4537776-af3f-4fbf-8756-a126fe160dbe" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/header/app-navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/header/app-navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/modal/modal-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/modal/modal-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/create-comment-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/create-comment-component.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-detail-list.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-detail-list.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-update/post-update-modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-update/post-update-modal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/user-profile/settings/setting-modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user-profile/settings/setting-modal.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +165,7 @@
       <workItem from="1748226880859" duration="10953000" />
       <workItem from="1748270453008" duration="84000" />
       <workItem from="1749224891989" duration="18049000" />
-      <workItem from="1749267324204" duration="5684000" />
+      <workItem from="1749267324204" duration="7700000" />
     </task>
     <servers />
   </component>

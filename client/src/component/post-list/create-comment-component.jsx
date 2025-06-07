@@ -8,26 +8,20 @@ import {useParams} from "react-router-dom";
 import toast from "react-hot-toast";
 
 const CreateCommentComponent = ({comment}) => {
-  const { PostListDetail,BlogListDetailRequest } = BlogPostStore();
+  const {BlogListDetailRequest } = BlogPostStore();
   const {profileList, profileListRequest} = UserStore()
-  const {CommentListDetail, commentListDetailsRequest, commentInput, commentOnchange, CreateCommentRequest} = CommentStore()
+  const { commentListDetailsRequest, commentInput, commentOnchange, CreateCommentRequest} = CommentStore()
   const { blogID } = useParams()
 
 
   useEffect(() => {
-    if(PostListDetail===null || profileList=== null || CommentListDetail === null)
-      (async () => {
-        if(PostListDetail === null ){
-          await BlogListDetailRequest(blogID);
-        }
-        if(profileList === null ){
-          await profileListRequest()
-        }
-        if(CommentListDetail === null){
-          await commentListDetailsRequest(blogID)
-        }
-      })();
-  }, [blogID, PostListDetail, profileList, CommentListDetail]);
+    (async () => {
+      await BlogListDetailRequest(blogID);
+      await profileListRequest()
+      await commentListDetailsRequest(blogID)
+    })();
+
+  }, [blogID]);
 
 
   const CreateCommentHandler = async (blogID) => {

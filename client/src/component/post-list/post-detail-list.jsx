@@ -98,7 +98,7 @@ const PostDetailList = () => {
       await commentListDetailsRequest(blogID)
     })();
 
-  }, [BlogListDetailRequest, blogID, commentListDetailsRequest, profileListRequest]);
+  }, [blogID]);
 
 
 
@@ -139,21 +139,15 @@ const PostDetailList = () => {
                               <div className="flex gap-2">
                                 <button
                                   onClick={() => zoomIn()}
-                                  className="px-2 py-1 bg-blue-500 text-white text-[30px] rounded hover:bg-blue-700"
+                                  className="cursor-pointer bg-blue-500 text-white p-2 rounded-full hover:bg-blue-700"
                                 >
-                                  <CiZoomIn/>
-                                </button>
-                                <button
-                                  onClick={() => zoomOut()}
-                                  className="px-2 py-1 bg-blue-500 text-white text-[30px] rounded hover:bg-blue-700"
-                                >
-                                  <CiZoomOut/>
+                                  <CiZoomIn size={24} />
                                 </button>
                                 <button
                                   onClick={() => resetTransform()}
-                                  className="px-2 py-1 bg-red-500 text-white text-[30px] rounded hover:bg-red-700"
+                                  className="cursor-pointer bg-red-500 text-white p-2 rounded-full hover:bg-red-700"
                                 >
-                                  <TbZoomReset/>
+                                  <TbZoomReset size={24} />
                                 </button>
                               </div>
                             </div>
