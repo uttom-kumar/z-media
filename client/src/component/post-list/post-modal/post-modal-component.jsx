@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import CommentCreateModalComponent from "./comment-create-modal-component.jsx";
 import {formatBlogPostDate, profileUrl} from "../../../utility/utility.js";
 import LikeButton from "../../common/likeButton.jsx";
+import SinglePostListSkeleton from "../../../skeleton/single-post-list-skeleton.jsx";
 
 const PostModalComponent = ({onClose,postID}) => {
   const{PostListDetail, BlogListDetailRequest} = PostListStore()
@@ -76,14 +77,10 @@ const PostModalComponent = ({onClose,postID}) => {
   };
 
   useEffect(() => {
-    if(!PostListDetail){
-      (async () => {
-        if (!PostListDetail) {
-          await BlogListDetailRequest(postID);
-        }
-      })();
-    }
-  }, [postID, PostListDetail, BlogListDetailRequest]);
+    (async () => {
+      await BlogListDetailRequest(postID);
+    })();
+  }, [BlogListDetailRequest, postID]);
 
 
   return (
@@ -91,8 +88,12 @@ const PostModalComponent = ({onClose,postID}) => {
       <div className="">
         <div>
           {
-            PostListDetail===null ? (<div>Loading....</div>) : PostListDetail?.map((item, i)=>{
-              const alreadyLiked = !!item?.react[0]?.likeByUserID?.find((like) => like.userID === item?.user._id)?.liked;
+            PostListDetail===null ? (
+                <div><SinglePostListSkeleton /></div>
+            ) : PostListDetail?.map((item, i)=>{
+              /* ------------ is the current user already liking this post? ------------ */
+              const currentUserID = profileList?.[0]?._id
+              const alreadyLiked = !!item?.react?.[0]?.likeByUserID?.find((like) => like.userID === currentUserID)?.liked;
               const formattedDate = format(new Date(item.createdAt), "dd MMM, yyyy 'at' h:mm a");
               return (
                 <div key={i}>

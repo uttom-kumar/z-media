@@ -5,20 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4537776-af3f-4fbf-8756-a126fe160dbe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/page/Protect-Routes/Public-Routes.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/skeleton/single-post-list-skeleton.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/common/likeButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/common/likeButton.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/modal/modal-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/modal/modal-component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-detail-list.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-detail-list.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-dropdown-topup/post-dropdown-top-up.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-dropdown-topup/post-dropdown-top-up.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-list-left.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-list-left.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-modal/post-modal-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-modal/post-modal-component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/user-profile/single-user-blog-list-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user-profile/single-user-blog-list-component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/user-profile/single-user-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user-profile/single-user-component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/user-profile/user-post-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user-profile/user-post-component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/page/privet-route/privet-route.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/page/Protect-Routes/privet-route.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/utility/utility.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utility/utility.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,24 +37,25 @@
     <option name="openDirectoriesWithSingleClick" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/uttom/Desktop/z-media/client/src/page/group&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.rainbow.brackets.disable.when&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/snap/webstorm/479/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/uttom/Desktop/z-media/client/src/skeleton",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.rainbow.brackets.disable.when",
+    "ts.external.directory.path": "/snap/webstorm/479/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/skeleton" />
       <recent name="$PROJECT_DIR$/client/src/page/group" />
       <recent name="F:\MERN Stack HW\Practice Project\socail-media\client\src\assets" />
       <recent name="F:\MERN Stack HW\Practice Project\socail-media\client\public" />
@@ -179,7 +169,8 @@
       <workItem from="1749267324204" duration="7935000" />
       <workItem from="1749374702102" duration="5851000" />
       <workItem from="1749743127655" duration="11000" />
-      <workItem from="1750267575758" duration="4614000" />
+      <workItem from="1750267575758" duration="4693000" />
+      <workItem from="1750272390742" duration="712000" />
     </task>
     <servers />
   </component>
