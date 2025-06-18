@@ -123,7 +123,7 @@ const SingleUserComponent = () => {
                         <p className="text-[22px]">{profile?.fullName}</p>
                       </div>
                       {
-                        profileList[0]?._id === profile?._id ? null : // Hide buttons if viewing own profile
+                        profileList?._id === profile?._id ? null : // Hide buttons if viewing own profile
                           profile?.friend?.followed?.some(friend => friend.userID === profileList[0]?._id) ? (
                             <button
                               className="px-3 py-2 rounded text-blue-400 font-semibold"
@@ -166,7 +166,7 @@ const SingleUserComponent = () => {
                     </div>
                     <div className="flex items-center gap-5">
                       <div className="flex items-center gap-5">
-                        {profileList[0]._id === profile?._id && (
+                        {profileList?.[0]?._id === profile?._id && (
                           <>
                             <Link to={`/profile/update`}
                                   className="px-3 py-2 text-sm text-white font-semibold bg-blue-400 rounded">

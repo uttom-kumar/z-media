@@ -6,8 +6,9 @@ import ReactionStore from "../../store/reaction-store.js";
 import BlogPostStore from "../../store/post-list-store.js";
 
 // eslint-disable-next-line react/prop-types
-const LikeButton = ({ postId, initialLiked = false, initialCount = 0 }) => {
+const LikeButton = ({ postId, userID, initialLiked = false, initialCount = 0 }) => {
     const { CreateLikeRequest } = ReactionStore();
+    const {blogPostReadRequest, UserByBlogPostListRequest, UserBySingleListDetailsRequest} = BlogPostStore();
 
     // ----------  state  ----------
     const [liked, setLiked]   = useState(initialLiked);  // is THIS user currently liking?
@@ -39,8 +40,14 @@ const LikeButton = ({ postId, initialLiked = false, initialCount = 0 }) => {
             const res = await CreateLikeRequest(postId);
 
             if (res?.status === "success") {
+                await blogPostReadRequest()
+                await UserByBlogPostListRequest()
+                await UserBySingleListDetailsRequest(userID)
                 toast.success("Liked successfully");
             } else if (res?.status === "unlike") {
+                await blogPostReadRequest()
+                await UserByBlogPostListRequest()
+                await UserBySingleListDetailsRequest(userID)
                 toast.success("Unliked successfully");
             } else {
                 throw new Error("Server returned an unexpected status");
@@ -71,7 +78,7 @@ const LikeButton = ({ postId, initialLiked = false, initialCount = 0 }) => {
                         <AiOutlineLike className="text-gray-600" />
                     )}
                 </motion.button>
-                <span className="text-[16px] font-semibold">{count} likes</span>
+                <span className={`${liked ? 'text-blue-600' : 'text-gray-600'} text-[16px] font-semibold`}>{count} likes</span>
             </div>
         </>
     );

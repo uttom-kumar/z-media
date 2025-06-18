@@ -88,7 +88,7 @@ const PostModalComponent = ({onClose,postID}) => {
 
   return (
     <div>
-      <div className="max-sm:[500px] md:w-[500px] xl:w-[650px] h-[95vh] mx-auto rounded  overflow-y-auto  scroll-hidden ">
+      <div className="">
         <div>
           {
             PostListDetail===null ? (<div>Loading....</div>) : PostListDetail?.map((item, i)=>{

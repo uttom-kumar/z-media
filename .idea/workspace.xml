@@ -5,9 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4537776-af3f-4fbf-8756-a126fe160dbe" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/page/Protect-Routes/Public-Routes.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/create-comment-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/create-comment-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/common/likeButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/common/likeButton.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/modal/modal-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/modal/modal-component.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-detail-list.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-detail-list.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-dropdown-topup/post-dropdown-top-up.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-dropdown-topup/post-dropdown-top-up.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-list-left.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-list-left.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/post-list/post-modal/post-modal-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/post-list/post-modal/post-modal-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/user-profile/single-user-blog-list-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user-profile/single-user-blog-list-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/user-profile/single-user-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user-profile/single-user-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/component/user-profile/user-post-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user-profile/user-post-component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/page/privet-route/privet-route.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/page/Protect-Routes/privet-route.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/utility/utility.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utility/utility.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +176,10 @@
       <workItem from="1748226880859" duration="10953000" />
       <workItem from="1748270453008" duration="84000" />
       <workItem from="1749224891989" duration="18049000" />
-      <workItem from="1749267324204" duration="7700000" />
+      <workItem from="1749267324204" duration="7935000" />
+      <workItem from="1749374702102" duration="5851000" />
+      <workItem from="1749743127655" duration="11000" />
+      <workItem from="1750267575758" duration="4614000" />
     </task>
     <servers />
   </component>
@@ -174,16 +188,5 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/client/src/component/post-list/post-list-left.jsx</url>
-          <line>219</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

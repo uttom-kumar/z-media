@@ -23,10 +23,8 @@ import LikeButton from "../common/likeButton.jsx";
 const PostListLeft = () => {
   const { blogPostRead, blogPostReadRequest,  } = BlogPostStore()
   const { profileListRequest,profileList} = UserStore()
-  const {CreateLikeRequest} =ReactionStore()
   const [showComment, setShowComment] = useState(false)
   const dropdownRef = useRef(null);
-
   const [showModalBtn, setShowModalBtn] = useState(false)
   const [showModal, setShowModal] = useState(false)
 
@@ -95,7 +93,9 @@ const PostListLeft = () => {
               blogPostRead?.slice()?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))?.map((post, i) => {
                 const formattedDate = format(new Date(post.createdAt), "dd MMM, yyyy 'at' h:mm a");
                 /* ------------ is the current user already liking this post? ------------ */
-                const alreadyLiked = !!post?.react?.likeByUserID?.find((like) => like.userID === post?.user._id)?.liked;
+                const currentUserID = profileList?.[0]?._id
+                const alreadyLiked = !!post?.react?.likeByUserID?.find((like) => like.userID === currentUserID)?.liked;
+
                 return (
                   <div key={i} className={`bg-white mb-10 p-5 md:p-10 rounded-lg border border-gray-200  shadow animate-fade-in 
                   ${post}
@@ -127,7 +127,7 @@ const PostListLeft = () => {
                       <div>
                         <div className="relative" ref={dropdownRef}>
                           {/*show delete edit hide ,save and copy link this*/}
-                          <button className="cursor-pointer" onClick={() => setShowModalBtn(post?._id)}>
+                          <button className="cursor-pointer p-2" onClick={() => setShowModalBtn(post?._id)}>
                             <GoKebabHorizontal/>
                           </button>
                           {/* --------- show drop down menu ----------*/}
@@ -136,7 +136,7 @@ const PostListLeft = () => {
                               <div ref={dropdownRef}
                                    className=" w-[220px] msm:w-[300px] py-3 px-1 bg-white rounded animate-fade-in"
                                    style={{boxShadow: "0 0 5px #ccc"}}>
-                                <PostDropdownTopUp blogID={post?._id} userID={post?.userID}/>
+                                <PostDropdownTopUp blogID={post?._id} userID={post?.userID} />
                               </div>
                             )}
 

@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Routes, useLocation} from "react-router-dom";
 import HomePage from "./page/home/home-page.jsx";
 import LoginComponent from "./component/user/login-component.jsx";
 import RegisterPage from "./page/user/register-page.jsx";
-import PrivetRoute from "./page/privet-route/privet-route.jsx";
+import PrivetRoute from "./page/Protect-Routes/privet-route.jsx";
 import PostDetailPage from "./page/blog-post/post-detail-page.jsx";
 import ProfileRead from "./page/profile/profile-read.jsx";
 import FriendPage from "./page/friends/friend-page.jsx";
@@ -22,6 +22,7 @@ import OtpConfirmPage from "./page/user/otp-confirm-page.jsx";
 import ResetPasswordPage from "./page/user/reset-password-page.jsx";
 import GroupPage from "./page/group/group-page.jsx";
 import GroupCreatePage from "./page/group/GroupCreate-page.jsx";
+import PublicRoute from "./page/Protect-Routes/Public-Routes.jsx";
 
 
 function ScrollToTopOnNavigation() {
@@ -49,8 +50,8 @@ const App = (props) => {
                 />
                 <ScrollToTopOnNavigation />
                 <Routes>
-                    <Route path="/login" element={<LoginComponent />} />
-                    <Route path="/register" element={<RegisterPage />} />
+                    <Route path="/login" element={<PublicRoute><LoginComponent /></PublicRoute>} />
+                    <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
                     <Route path="/recover-email" element={<RecoverEmailPage />} />
                     <Route path="/sent-otp" element={<OtpConfirmPage />} />
                     <Route path="/reset-password" element={<ResetPasswordPage />} />

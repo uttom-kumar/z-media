@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import save_icon from "../../../../public/icons/save_icon.svg"
 import {FaCheckCircle, FaLink} from "react-icons/fa";
 import {MdDelete, MdModeEditOutline} from "react-icons/md";
@@ -45,7 +45,7 @@ const PostDropdownTopUp = ({blogID,userID}) => {
 
 
   return (
-    <div className="">
+    <div className="" >
       <button className="w-full py-2 px-5 hover:bg-gray-100 -z-10 border-b border-gray-700 text-[16px]">
         <span className="flex items-center gap-2">
           <img className="w-[20px]" src={save_icon} alt=""/>Save Post
@@ -101,7 +101,7 @@ const PostDropdownTopUp = ({blogID,userID}) => {
       }
 
       <div>
-        <PostUpdateModal isVisible={showModal} onClose={() => setShowModal(false)}>
+        <PostUpdateModal isVisible={showModal} onClose={() => setShowModal(false)} >
           <PostUpdateComponent blogID={blogID} userID={userID} onClose={setShowModal}/>
         </PostUpdateModal>
       </div>

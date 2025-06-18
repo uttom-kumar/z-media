@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import BlogPostStore from "../../store/post-list-store.js";
 import {Link, useParams} from "react-router-dom";
-import { CiZoomIn, CiZoomOut } from "react-icons/ci";
+import { CiZoomIn } from "react-icons/ci";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import { TbZoomReset } from "react-icons/tb";
 import UserStore from "../../store/user-store.js";
@@ -12,11 +12,8 @@ import {formatBlogPostDate, profileUrl} from "../../utility/utility.js";
 import CommentHeader from "../header/comment-header.jsx";
 import CreateCommentComponent from "./create-comment-component.jsx";
 import toast from "react-hot-toast";
-import { AiOutlineLike} from "react-icons/ai";
 import {FaComment, FaRegComment} from "react-icons/fa";
-import ReactionStore from "../../store/reaction-store.js";
 import LikeShowUser from "./like_by_user/like-show-user.jsx";
-import {id} from "date-fns/locale";
 import LikeButton from "../common/likeButton.jsx";
 
 const PostDetailList = () => {
@@ -182,7 +179,8 @@ const PostDetailList = () => {
             <div>Loading...</div>
           ) : (
             PostListDetail.map((item, i) => {
-              const alreadyLiked = !!item?.react[0]?.likeByUserID?.find((like) => like.userID === item?.user._id)?.liked;
+              const currentUserID = profileList?.[0]?._id
+              const alreadyLiked = !!item?.react?.[0]?.likeByUserID?.find((like) => like.userID === currentUserID)?.liked;
               const formattedDate = format(new Date(item.createdAt), "dd MMM, yyyy 'at' h:mm a")
 
               return (

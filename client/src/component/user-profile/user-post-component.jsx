@@ -13,10 +13,10 @@ import ReactionStore from "../../store/reaction-store.js";
 import PostListSkeleton from "../../skeleton/post-list-skeleton.jsx";
 import PostModalComponent from "../post-list/post-modal/post-modal-component.jsx";
 import ModalComponent from "../modal/modal-component.jsx";
+import LikeButton from "../common/likeButton.jsx";
 
 const UserPostComponent = () => {
-  const { UserByBlogPostList,UserByBlogPostListRequest } = BlogPostStore();
-  const {CreateLikeRequest,ReactionListRequest} = ReactionStore()
+  const { UserByBlogPostList} = BlogPostStore();
   const [showComment, setShowComment] = useState(false)
   const dropdownRef = useRef(null);
   const [showModalBtn, setShowModalBtn] = useState(false)
@@ -29,28 +29,13 @@ const UserPostComponent = () => {
 
 
 
-  const likeHandler = async (id) => {
-    let response = await CreateLikeRequest(id)
-    if(response['status']==="success"){
-      await UserByBlogPostListRequest()
-      await ReactionListRequest(id)
-      toast.success('liked successfully')
-    }
-    if(response['status']==='unlike'){
-      await UserByBlogPostListRequest()
-      await ReactionListRequest(id)
-      toast.success('unlike successfully')
-    }
-  }
-
-
   const handleShare = async (id) => {
     const url = location + "blogDetails/" + id
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'KAM_DEE',
-          text: 'Mr.CEO_and_Founder_Of_UVIOM .',
+          title: '',
+          text: '',
           url: url,
         });
 
@@ -84,7 +69,7 @@ const UserPostComponent = () => {
       ) : (
         <>
           {UserByBlogPostList?.slice()?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))?.map((post, i) => {
-            console.log(post)
+            const alreadyLiked = !!post?.Reaction[0]?.likeByUserID?.find((like) => like.userID === post?.user._id)?.liked;
             const formattedDate = format(new Date(post.createdAt), "dd MMM, yyyy 'at' h:mm a");
             return (
               <div key={i} className="p-5 bg-white border border-gray-200 shadow rounded mb-10">
@@ -106,8 +91,8 @@ const UserPostComponent = () => {
                       <p className="text-[14px]">{formattedDate}</p>
                     </div>
                   </div>
-                  <div className="relative">
-                    <button className="cursor-pointer" ref={dropdownRef} onClick={() => setShowModalBtn(post?._id)}>
+                  <div className="relative" ref={dropdownRef}>
+                    <button className="cursor-pointer" onClick={() => setShowModalBtn(post?._id)}>
                     <GoKebabHorizontal/>
                     </button>
                     <div className="absolute top-[20px] right-0">
@@ -117,7 +102,7 @@ const UserPostComponent = () => {
                           className="w-[220px] msm:w-[300px] py-3 px-1 bg-white rounded animate-fade-in"
                           style={{boxShadow: "0 0 5px #ccc"}}
                         >
-                          <PostDropdownTopUp blogID={post?._id} userID={post?.userID}/>
+                          <PostDropdownTopUp blogID={post?._id} userID={post?.userID} />
                         </div>
                       )}
                     </div>
@@ -156,13 +141,13 @@ const UserPostComponent = () => {
                     </div>
                     <div
                       className="flex justify-between items-center gap-3 py-2 px-5 border-t border-t-gray-400 ">
-                      <button
-                        onClick={() => likeHandler(post?._id)}
-                        className={`text-[24px] flex gap-2 cursor-pointer`}
-                      >
-                        <AiOutlineLike />
-                        <p className="text-[16px] font-semibold">{post?.Reaction[0]?.like} likes</p>
-                      </button>
+                      <LikeButton
+                          postId={post?._id}
+                          userID={post?.userID}
+                          initialLiked={alreadyLiked}
+                          initialCount={post?.Reaction[0]?.like ?? 0}
+                      />
+
                       <button className="text-[24px] cursor-pointer" onClick={() => setShowComment(post?._id)}>
                         <FaRegComment/>
                       </button>

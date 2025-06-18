@@ -9,7 +9,6 @@ export const isLoggedIn = () => {
     }
     else{
         sessionStorage.clear()
-        localStorage.clear()
         localStorage.removeItem('isUserLoggedIn')
         return false
     }

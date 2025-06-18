@@ -13,28 +13,17 @@ import ReactionStore from "../../store/reaction-store.js";
 import PostListSkeleton from "../../skeleton/post-list-skeleton.jsx";
 import PostModalComponent from "../post-list/post-modal/post-modal-component.jsx";
 import ModalComponent from "../modal/modal-component.jsx";
+import LikeButton from "../common/likeButton.jsx";
+import UserStore from "../../store/user-store.js";
 
 const SingleUserBlogListComponent = ({userID}) => {
   const dropdownRef = useRef(null);
   const [showModalBtn, setShowModalBtn] = useState(false)
-  const { UserBySingleListDetails ,UserBySingleListDetailsRequest} = BlogPostStore();
-  const {CreateLikeRequest} = ReactionStore()
+  const { UserBySingleListDetails} = BlogPostStore();
+  const {profileList} = UserStore()
   const [showComment, setShowComment] = useState(false);
-
   const [showModal, setShowModal] = useState(false)
 
-
-  const likeHandler = async (blogID) => {
-    let response = await CreateLikeRequest(blogID)
-    if(response['status']==="success"){
-      await UserBySingleListDetailsRequest(userID)
-      toast.success('liked successfully')
-    }
-    if(response['status']==='unlike'){
-      await UserBySingleListDetailsRequest(userID)
-      toast.success('unlike successfully')
-    }
-  }
 
   const handleShare = async (blogID) => {
     const url = location + "blogDetails/" + blogID
@@ -79,6 +68,8 @@ const SingleUserBlogListComponent = ({userID}) => {
       ) : (
         <>
           {UserBySingleListDetails?.slice()?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))?.map((postlist, index) => {
+            const currentUserID = profileList?.[0]?._id
+            const alreadyLiked = !!postlist?.Reaction?.[0]?.likeByUserID?.find((like) => like.userID === currentUserID)?.liked;
             const formattedDate = format(new Date(postlist.createdAt), "dd MMM, yyyy 'at' h:mm a");
             return (
               <div key={index} className="p-5 bg-white border border-gray-400 rounded mb-10">
@@ -134,34 +125,31 @@ const SingleUserBlogListComponent = ({userID}) => {
                 {/*like section*/}
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <div>
-                      <strong>{postlist?.Reaction[0]?.like} likes</strong>
-                    </div>
+                    <div></div>
                     <div className="">
                       <button
                         onClick={() => openModal(postlist?._id)}
                       >
-                        <span className="text-gray-700 font-bold">{postlist?.comment?.length || 0} comments</span>
+                        <span className="text-gray-700 font-bold cursor-pointer">{postlist?.comment?.length || 0} comments</span>
                       </button>
                     </div>
                   </div>
                   <div className="">
                   <div
                       className="flex items-center gap-3 px-5 py-2 border-t border-t-gray-600  justify-between">
-                      <button
-                        onClick={() => likeHandler(postlist?._id)}
-                        className={`text-[24px]`}
-                      >
-                        <AiFillLike/>
-                      </button>
+                    <LikeButton
+                        postId={postlist?._id}
+                        initialLiked={alreadyLiked}
+                        initialCount={postlist?.Reaction?.[0]?.like ?? 0}
+                    />
                       <button
                         onClick={()=>setShowComment(postlist?._id)}
-                        className="text-[24px]">
+                        className="text-[24px] cursor-pointer">
                         <FaRegComment/>
                       </button>
                       <button
                         onClick={()=>handleShare(postlist?._id)}
-                        className="text-[20px] ">
+                        className="text-[20px] cursor-pointer">
                         <FaShare/>
                       </button>
                     </div>

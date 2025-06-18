@@ -36,23 +36,25 @@ const ModalComponent = ({ isVisible, onClose, children }) => {
         <div
             id="backdrop"
             onClick={handleBackdropClick}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/20 backdrop-blur-sm transition-all"
         >
             <div
                 ref={modalRef}
-                className="relative bg-white rounded-lg shadow-2xl p-6 w-[90%] sm:w-[80%] md:w-[60%] lg:w-[40%] max-h-[90vh] overflow-y-auto animate-fade-in"
+                className="relative w-[92%] sm:w-[85%] md:w-[70%] lg:w-[55%] xl:w-[40%] max-h-[90vh] overflow-y-auto bg-white rounded-2xl  animate-fade-in-up scale-100 transition-transform duration-300 px-6"
             >
-                {/* Close Button */}
-                <button
-                    onClick={onClose}
-                    className="absolute curs top-3 right-3 z-[999] w-9 h-9 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition"
-                    aria-label="Close modal"
-                >
-                    <IoCloseSharp className="text-xl text-gray-700 hover:text-gray-900 transition" />
-                </button>
+                {/*/!* Close Button *!/*/}
+                {/*<button*/}
+                {/*    onClick={onClose}*/}
+                {/*    className="z-50 cursor-pointer absolute top-4 right-4 p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-900 transition"*/}
+                {/*    aria-label="Close modal"*/}
+                {/*>*/}
+                {/*    <IoCloseSharp className="text-2xl" />*/}
+                {/*</button>*/}
 
                 {/* Modal Content */}
-                {children}
+                <div className="mt-2">
+                    {children}
+                </div>
             </div>
         </div>
     );
