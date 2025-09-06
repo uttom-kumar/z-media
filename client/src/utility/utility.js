@@ -29,7 +29,7 @@ export function Unauthorized(code) {
 }
 
 export const usernameValidation = (username) => {
-    const regex = /^[A-Za-z][A-Za-z0-9_-]*$/;
+    const usernameRegex = /^[A-Za-z][A-Za-z0-9_.]*$/;
     return regex.test(username);
 };
 
