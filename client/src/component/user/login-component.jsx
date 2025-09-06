@@ -1,25 +1,20 @@
-import React, {useEffect, useState} from 'react';
-import loginImage from '../../../public/images/login.jpg';
+import React, { useEffect, useState } from "react";
 import { BiSolidHide, BiSolidShow } from "react-icons/bi";
-import {Link, useNavigate} from "react-router-dom";
-import {FcGoogle} from "react-icons/fc";
-import {FaFacebook} from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
 import UserStore from "../../store/user-store.js";
 import toast from "react-hot-toast";
-import Cookies from "js-cookie";
 import CustomLoadingButton from "../LoadingButton/CustomLoadingButton.jsx";
 
 const LoginComponent = () => {
     const [showPass, setShowPass] = useState(false);
-    const {loginInput, loginOnchange, loginRequest, isLoading, setLoading} = UserStore()
+    const { loginInput, loginOnchange, loginRequest, isLoading, setLoading } = UserStore();
     const [error, setError] = useState("");
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [rememberMe, setRememberMe] = useState(false);
 
-
-    const togglePasswordVisibility = () => {
-        setShowPass(!showPass);
-    };
+    const togglePasswordVisibility = () => setShowPass(!showPass);
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -30,33 +25,30 @@ const LoginComponent = () => {
         }
 
         try {
-            setLoading(true)
+            setLoading(true);
             const res = await loginRequest(loginInput);
             if (res.status === "success") {
-                setLoading(false)
-                localStorage.setItem("isUserLoggedIn", 'true')
+                setLoading(false);
+                localStorage.setItem("isUserLoggedIn", "true");
                 loginOnchange("email", "");
                 loginOnchange("password", "");
-                navigate('/')
-                // Save login details if "Remember Me" is checked
+                navigate("/");
+
                 if (rememberMe) {
-                    setLoading(false)
                     localStorage.setItem("email", loginInput.email);
                     localStorage.setItem("password", loginInput.password);
                     localStorage.setItem("rememberMe", "true");
                 } else {
-                    setLoading(false)
                     localStorage.removeItem("email");
                     localStorage.removeItem("password");
                     localStorage.removeItem("rememberMe");
                 }
-            }
-            else {
-                setLoading(false)
+            } else {
+                setLoading(false);
                 setError(res.message);
             }
         } catch (err) {
-            setLoading(false)
+            setLoading(false);
             toast.error("Something went wrong!");
         }
     };
@@ -73,107 +65,106 @@ const LoginComponent = () => {
         }
     }, []);
 
-
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setError("");
-        }, 2000);
+        const timer = setTimeout(() => setError(""), 2000);
         return () => clearTimeout(timer);
     }, [error]);
 
     return (
-        <div className="bg-white">
-            <div className="container mx-auto">
-                <div className="lg:flex gap-5 h-screen justify-center items-center w-full md:w-[60%] lg:w-[70%] mx-auto">
-                    <div className="w-full lg:w-[50%] mx-auto order-2 lg:order-1">
-                        <img src={loginImage} alt="image" />
-                    </div>
-                    <div className="w-full lg:w-[50%] order-1 lg:order-2 p-5">
-                        <div className="p-5 md:p-10 rounded border border-gray-500">
-                            <form onSubmit={submitHandler}>
-                                {/* Email Input */}
-                                <div className="relative z-0 w-full mb-5 group">
-                                    <input
-                                        type="text"
-                                        id="email"
-                                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                        placeholder=""
-                                        value={loginInput.email}
-                                        onChange={(e) => {loginOnchange("email", e.target.value)}}
-                                    />
-                                    <label
-                                        htmlFor="email"
-                                        className="absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] left-0 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600"
-                                    >
-                                        Email or Username
-                                    </label>
-                                </div>
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-50 to-gray-100">
+            <div className="w-full max-w-4xl mx-auto flex flex-col md:flex-row  overflow-hidden ">
 
-                                <div className=" mb-6 flex items-center border-b-2 border-gray-300">
-                                    <div className="relative z-0 w-full group">
-                                        <input
-                                            type={showPass ? "text" : "password"}
-                                            id="password"
-                                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                            placeholder=""
-                                            value={loginInput.password}
-                                            onChange={(e) => {loginOnchange("password", e.target.value)}}
-                                        />
-                                        <label
-                                            htmlFor="password"
-                                            className="absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] left-0 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600"
-                                        >
-                                            Password
-                                        </label>
-                                    </div>
-                                    <div className="ml-3">
-                                        <button
-                                            type="button"
-                                            onClick={togglePasswordVisibility}
-                                            className="text-gray-600 hover:text-gray-900 focus:outline-none cursor-pointer"
-                                        >
-                                            {showPass ? <BiSolidHide /> : <BiSolidShow />}
-                                        </button>
-                                    </div>
-                                </div>
-                                {/* Remember Me Checkbox */}
-                                <div>
-                                    <div className="flex items-center gap-2">
-                                        <input
-                                          className="cursor-pointer"
-                                          type="checkbox"
-                                          id="rememberMe"
-                                          checked={rememberMe}
-                                          onChange={(e) => setRememberMe(e.target.checked)}
-                                        />
-                                        <label
-                                          className="cursor-pointer text-[14px]"
-                                          htmlFor="rememberMe"
-                                        >
-                                            Remember Me
-                                        </label>
-                                    </div>
-                                </div>
-                                <p className="text-red-600 mb-3">{error}</p>
-                                <div>
-                                    <CustomLoadingButton
-                                        text='login'
-                                        onClick={submitHandler}
-                                        isLoading={isLoading}
-                                        type={'submit'}
-                                    />
-                                </div>
-                            </form>
-                            <div className="text-center mt-5">
-                                <Link className="text-blue-500 text-[14px] hover:underline" to={`/recover-email`}>forgotten password?</Link>
+                {/* Left Section */}
+                <div className="hidden md:flex flex-col justify-center items-start w-1/2  text-black p-10">
+                    <h1 className="text-4xl font-bold mb-4">Welcome Back!</h1>
+                    <p className="text-lg opacity-90">
+                        Z-Media helps you connect and share with the people in your life.
+                    </p>
+                </div>
+
+                {/* Right Section - Form */}
+                <div className="w-full md:w-1/2 p-8 bg-white shadow-lg rounded-lg">
+                    <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Login to Your Account</h2>
+
+                    <form onSubmit={submitHandler} className="space-y-5">
+                        {/* Email */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-600 mb-1">Email or Username</label>
+                            <input
+                                type="text"
+                                value={loginInput.email}
+                                onChange={(e) => loginOnchange("email", e.target.value)}
+                                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+                                placeholder="Enter your email"
+                            />
+                        </div>
+
+                        {/* Password */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-600 mb-1">Password</label>
+                            <div className="flex items-center border rounded-lg overflow-hidden">
+                                <input
+                                    type={showPass ? "text" : "password"}
+                                    value={loginInput.password}
+                                    onChange={(e) => loginOnchange("password", e.target.value)}
+                                    className="w-full px-4 py-2 outline-none"
+                                    placeholder="Enter your password"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={togglePasswordVisibility}
+                                    className="cursor-pointer px-3 text-gray-600 hover:text-gray-900"
+                                >
+                                    {showPass ? <BiSolidHide size={20} /> : <BiSolidShow size={20} />}
+                                </button>
                             </div>
                         </div>
-                        <div className="my-5 p-5 rounded border border-gray-500 ">
-                            <p>Don&#39;t Have an account?
-                                <Link className="text-blue-400 font-bold" to={`/register`}> Register</Link>
-                            </p>
+
+                        {/* Remember Me */}
+                        <div className="flex items-center justify-between">
+                            <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    checked={rememberMe}
+                                    onChange={(e) => setRememberMe(e.target.checked)}
+                                    className="accent-blue-600"
+                                />
+                                Remember Me
+                            </label>
+                            <Link to="/recover-email" className="text-sm text-blue-600 hover:underline">
+                                Forgotten password?
+                            </Link>
                         </div>
-                    </div>
+
+                        {/* Error */}
+                        {error && <p className="text-red-600 text-sm bg-red-50 p-2 rounded">{error}</p>}
+
+                        {/* Login Button */}
+                        <CustomLoadingButton
+                            text="Login"
+                            onClick={submitHandler}
+                            isLoading={isLoading}
+                            type="submit"
+                        />
+
+                        {/*/!* Social Login *!/*/}
+                        {/*<div className="flex flex-col gap-3 mt-4">*/}
+                        {/*    <button className="flex items-center justify-center gap-2 border rounded-lg py-2 hover:bg-gray-50">*/}
+                        {/*        <FcGoogle size={20} /> Continue with Google*/}
+                        {/*    </button>*/}
+                        {/*    <button className="flex items-center justify-center gap-2 border rounded-lg py-2 text-blue-600 hover:bg-blue-50">*/}
+                        {/*        <FaFacebook size={20} /> Continue with Facebook*/}
+                        {/*    </button>*/}
+                        {/*</div>*/}
+                    </form>
+
+                    {/* Register */}
+                    <p className="text-center mt-6 text-sm">
+                        Don’t have an account?{" "}
+                        <Link to="/register" className="text-blue-600 font-semibold hover:underline">
+                            Register
+                        </Link>
+                    </p>
                 </div>
             </div>
         </div>
