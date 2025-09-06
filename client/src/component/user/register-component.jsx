@@ -23,7 +23,7 @@ const RegisterComponent = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        const usernameRegex = /^[a-z][a-z0-9_-]{1,6}[a-z0-9]$/;
+        const usernameRegex = /^[A-Za-z][A-Za-z0-9_-]*$/;
         const passwordRegex =
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
         const phoneRegex = /^\+?[1-9]\d{1,14}$/;
