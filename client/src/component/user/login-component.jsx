@@ -72,7 +72,7 @@ const LoginComponent = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-50 to-gray-100">
-            <div className="w-full max-w-4xl mx-auto flex flex-col md:flex-row  overflow-hidden ">
+            <div className="w-full max-w-4xl mx-auto flex flex-col md:flex-row px-5  overflow-hidden ">
 
                 {/* Left Section */}
                 <div className="hidden md:flex flex-col justify-center items-start w-1/2  text-black p-10">
@@ -83,8 +83,11 @@ const LoginComponent = () => {
                 </div>
 
                 {/* Right Section - Form */}
-                <div className="w-full md:w-1/2 p-8 bg-white shadow-lg rounded-lg">
-                    <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Login to Your Account</h2>
+                <div className="w-full mx-auto sm:w-[70%] md:w-1/2 p-8 bg-white shadow-lg rounded-lg">
+                    <h1 className={"block md:hidden text-4xl font-bold text-center mb-6 text-blue-800"}>
+                        Z Media
+                    </h1>
+                    <h2 className=" text-lg sm:text-2xl font-bold text-center mb-6 text-gray-800">Login to Your Account</h2>
 
                     <form onSubmit={submitHandler} className="space-y-5">
                         {/* Email */}

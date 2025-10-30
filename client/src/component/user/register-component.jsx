@@ -76,7 +76,10 @@ const RegisterComponent = () => {
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-50 via-blue-50 to-gray-100 px-4 py-5">
             <div className="w-full max-w-xl bg-white shadow-2xl rounded-2xl p-8 md:p-10">
                 {/* Header */}
-                <h1 className="text-3xl font-bold text-center text-blue-600 mb-8">
+                <h1 className={"text-4xl font-bold text-center mb-6 text-blue-800"}>
+                    Z Media
+                </h1>
+                <h1 className="text-2xl font-bold text-center text-gray-800 mb-8">
                     Create Your Account
                 </h1>
 
