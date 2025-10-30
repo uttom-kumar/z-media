@@ -52,7 +52,16 @@ const SettingModalComponent = ({onClose}) => {
             Log Out
           </Link>
         </li>
-        <li className="">
+          <li className="">
+              <Link
+                  to={'https://github.com/uttom-kumar'}
+                  className="block w-full py-5 hover:bg-gray-200 duration-500 border-b border-gray-300"
+              >
+                  About us
+              </Link>
+          </li>
+
+          <li className="">
           <button
             onClick={()=>onClose(false)}
                   className="block w-full cursor-pointer py-5 hover:bg-gray-200 duration-500  border-b border-gray-300">
