@@ -55,6 +55,7 @@ const SettingModalComponent = ({onClose}) => {
           <li className="">
               <Link
                   to={'https://github.com/uttom-kumar'}
+                  target="_blank"
                   className="block w-full py-5 hover:bg-gray-200 duration-500 border-b border-gray-300"
               >
                   About us

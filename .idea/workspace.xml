@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4537776-af3f-4fbf-8756-a126fe160dbe" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/client/src/component/user-profile/settings/setting-modal-component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/component/user-profile/settings/setting-modal-component.jsx" afterDir="false" />
-    </list>
+    <list default="true" id="d4537776-af3f-4fbf-8756-a126fe160dbe" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -173,7 +171,7 @@
       <workItem from="1749743127655" duration="11000" />
       <workItem from="1750267575758" duration="4693000" />
       <workItem from="1750272390742" duration="712000" />
-      <workItem from="1761836850163" duration="308000" />
+      <workItem from="1761836850163" duration="651000" />
     </task>
     <servers />
   </component>
