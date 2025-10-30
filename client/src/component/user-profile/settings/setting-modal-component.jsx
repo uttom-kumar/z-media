@@ -31,7 +31,7 @@ const SettingModalComponent = ({onClose}) => {
           </Link>
         </li>
         <li className="">
-          <Link onClick={()=>onClose(false)} to={`/profile/update`} className="block w-full py-5 hover:bg-gray-200 duration-500  border-b border-gray-300">
+          <Link onClick={()=>onClose(false)} to={`/profile/update/info`} className="block w-full py-5 hover:bg-gray-200 duration-500  border-b border-gray-300">
             Update Profile
           </Link>
         </li>
